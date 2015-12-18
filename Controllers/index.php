@@ -2,12 +2,20 @@
 /**
 * 
 */
-class Index //extends Controller
+class Index extends Controller
 {
 	
 	function __construct()
 	{
-		echo 'we are inside index';
+		parent::__construct();
+	}
+
+	function index()
+	{
+		//name of folder and file
+		require_once('models/index_model.php');
+		$model = new Index_Model();
+		$this->view->render('index/index');
 	}
 }
 

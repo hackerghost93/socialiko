@@ -1,0 +1,75 @@
+socialiko == >database schema
+
+
+table users:
+
+
+user id primary key
+first name not null varchar 63
+last name not null  varchar 63
+password varchar 31 not null
+email not null varchar 127
+phone number varchar 31
+gender enum{male, female} not null
+birthdate  date not null
+profile pic image
+home town varchar 63
+martial status enum{single, engaged, married}
+about me text(1023)
+
+table friends:
+
+user_id source friend
+user_id dest friend
+primary key (source friend, dest friend)
+
+
+table posts:
+
+post id primary key
+user id foreign key not null
+post_date timestamp default current time stamp
+caption text(1023)
+post_image image
+state enum {public, private} not null
+
+table likes:
+
+like_id primary key
+post_id 
+user_id
+//primary key(post_id, user_id)
+
+table comments:
+
+comment_id 
+post_id
+user_id not null
+comment_text varchar(1023) not null
+primary key(comment_id, post_id)
+// image comment
+
+table notifications:
+
+notification_id
+notification_type enum{friend request, comment, like}
+
+table not_comment:
+
+notification_id
+user_id
+comment_id
+
+table not_friend_request:
+
+notificaton_id
+source_user_id
+dest_user_id
+
+table not_like:
+
+notification_id
+like_id
+
+===================================================================================
+

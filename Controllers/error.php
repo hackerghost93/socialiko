@@ -2,14 +2,20 @@
 /**
 * 
 */
-class Error
+class Error extends Controller
 {
 	
+
 	function __construct($x)
 	{
+		parent::__construct();
 		if($x == 404)
-			echo 'not found error';
+		{
+			$this->view->render('error/404',0);
+		}
 	}
+
+
 }
 
 
