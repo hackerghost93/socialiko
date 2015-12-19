@@ -4,14 +4,15 @@
  // then do this-> sudo a2enmod rewrite && sudo service apache2 restart
 	// you need to fix parser of url trim etc .
 // use autoloader
-// if there is url typed or not
-$url = isset($_GET['url'])?$_GET['url'] : null ;
+require 'settings.php';
+require 'Libs/session.php';
+require 'Libs/database.php';
 require 'Libs/model.php';
 require 'Libs/controller.php';
 require 'Libs/view.php';
-require 'Libs/database.php';
-require 'settings.php';
 require 'Config/database.php';
+// if there is url typed or not
+$url = isset($_GET['url'])?$_GET['url'] : null ;
  //validate url
  //split url
 $url = explode('/',$_GET['url']);
@@ -51,7 +52,7 @@ if(isset($url[1]))
 	{
 	 	if(isset($url[2]))
 		 	$controller->{$url[1]}($url[2]);
-	 	else $controller->{$url[1]};
+	 	else $controller->{$url[1]}();
 	}
 	else
  	{

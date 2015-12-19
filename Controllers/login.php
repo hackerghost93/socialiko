@@ -15,8 +15,9 @@ class Login extends Controller
 		//name of folder and file
 		$this->view->render('login/login',0);
 	}
-	function run()
+	public function check()
 	{
+		// see login data in the users model
 		$this->model->run();
 	}
 
