@@ -1,5 +1,4 @@
 <?php
-require_once 'Libs/model.php' 
 /**
 * Index Model Class 
 */

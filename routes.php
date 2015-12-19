@@ -1,4 +1,5 @@
 <?php
+//This is the flow of the website
  // for this to run you need to AllowOverride All in apache2 settings
  // then do this-> sudo a2enmod rewrite && sudo service apache2 restart
 	// you need to fix parser of url trim etc .
@@ -8,7 +9,7 @@ $url = isset($_GET['url'])?$_GET['url'] : null ;
 require 'Libs/model.php';
 require 'Libs/controller.php';
 require 'Libs/view.php';
-require 'Libs/Database.php';
+require 'Libs/database.php';
 require 'settings.php';
 require 'Config/database.php';
  //validate url
@@ -41,6 +42,7 @@ else
  	return false ;
 }
 $controller = new $url[0] ;
+$controller->LoadModel($url[0]);
 
  //validation of url if methods exist
 if(isset($url[1]))

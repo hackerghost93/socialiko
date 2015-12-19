@@ -13,16 +13,13 @@ class Login extends Controller
 	function index()
 	{
 		//name of folder and file
-		require_once('Models/login_model.php');
-		$model = new Login_Model();
 		$this->view->render('login/login',0);
 	}
-
-	function other()
+	function run()
 	{
-		require_once('models/login_model.php');
-		$model = new Login_Model();
+		$this->model->run();
 	}
+
 }
 
 

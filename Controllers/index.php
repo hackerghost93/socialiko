@@ -14,8 +14,6 @@ class Index extends Controller
 	{
 		//name of folder and file
 		require_once('models/index_model.php');
-		$model = new Index_Model();
-		$this->view->render('index/index');
 	}
 }
 
