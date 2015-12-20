@@ -21,7 +21,6 @@ class Session
 	}
 	public static function get($key)
 	{
-		print_r($_SESSION);
 		if(isset($_SESSION[$key]))
 			return $_SESSION[$key];
 		return null ;

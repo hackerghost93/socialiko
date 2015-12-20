@@ -10,10 +10,7 @@ class Index extends Controller
 		parent::__construct();
 		if(Session::authenticate() == 0)
 		{
-		 	//Session::destroy();
-		 	echo Session::authenticate();
 		 	header('Location: '.URL.'/login');
-		 	// to stop code flow
 		 	exit ;
 		}
 	}
@@ -21,7 +18,7 @@ class Index extends Controller
 	function index()
 	{
 		//name of folder and file
-		$this->view->render('index/index',0);
+		$this->view->render('index/index',false);
 	}
 }
 

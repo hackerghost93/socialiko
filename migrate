@@ -2,7 +2,7 @@
 // this is command for migrating a table 
 // only steps need a file.sql and give it as an argument in Schema
 // in socialiko termianl 
-// php migrate.php table
+// php migrate tableName
 require 'settings.php';
 
 $conn = mysqli_connect(HOSTNAME,USERNAME,PASSWORD,DBNAME);
