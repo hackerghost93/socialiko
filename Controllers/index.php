@@ -8,21 +8,20 @@ class Index extends Controller
 	function __construct()
 	{
 		parent::__construct();
-		Session::init();
-		$logged = Session::get('id');
-		if(is_null($logged))
+		if(Session::authenticate() == 0)
 		{
-			Session::destroy();
-			header('Location: '.URL.'/login');
-			// to stop code flow
-			exit ;
+		 	//Session::destroy();
+		 	echo Session::authenticate();
+		 	header('Location: '.URL.'/login');
+		 	// to stop code flow
+		 	exit ;
 		}
 	}
 
 	function index()
 	{
 		//name of folder and file
-		$this->view->render('index/index');
+		$this->view->render('index/index',0);
 	}
 }
 

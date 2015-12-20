@@ -7,7 +7,8 @@ class Controller
 	
 	function __construct()
 	{
-		//parent will make view which i can call	
+		//parent will make view which i can call
+		Session::init();
 		$this->view = new View();
 	}
 

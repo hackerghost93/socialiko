@@ -44,6 +44,58 @@ class Login_Model extends Model
 		// print an array for debug
 		//print_r($data);
 	}
+
+	private function getValue($x)
+	{
+		//if(isset($_POST))
+	}
+
+	public function sign_up()
+	{
+		$firstname = $_POST['firstname'];
+		$lastname = $_POST['lastname'];
+		$email = $_POST['email'];
+		$password = md5($_POST['password']);
+		$phone = $_POST['phone'];
+		$gender = $_POST['gender'];
+		$status = $_POST['status'];
+		$birthday = $_POST['birthday'];
+		$aboutme = $_POST['aboutme'];
+		//insert query
+		$query = $this->db->prepare("Insert into users 
+			(first_name,last_name,email,password
+				,phone,gender,birthdate,hometown,
+			martial_status,about_me,image_path
+			,created_at,updated_at)
+			Values
+			(:firstname , :lastname , :email , 
+			md5(:password),:phone,:gender,:birthdate,:hometown
+			,:status,:aboutme,:image_path,:created_at,:updated_at)
+			");
+		
+		
+		if($query->execute(array(
+		':firstname' => $_POST['firstname'],
+		':lastname' => $_POST['lastname'],
+		':email' => $_POST['email'],
+		':password' => md5($_POST['password']),
+		':phone' => $_POST['phone'],
+		':gender' =>$_POST['gender'],
+		':birthdate' => $_POST['birthday'],
+		':hometown' => $_POST['hometown'],
+		':status' => $_POST['status'],
+		':aboutme' => $_POST['aboutme'],
+		':created_at' => NULL ,
+		':updated_at' => NULL ,
+		':image_path' => NULL ,
+			))
+		)
+			return $this->db->lastInsertId();
+		else 
+			return 0 ;
+
+	}
 }
+
 
  ?>

@@ -24,9 +24,12 @@
             margin-top: 28%; 
             margin-left: 45%; 
         }
+        .class4 > a{
+            color : black ;
+        }
     body
     {
-        background-color:#3399FF;
+        background-color:#AB0000;
     }
 
     </style>
@@ -40,7 +43,7 @@
             <div class="class3">Sorry, an error has occured, Requested page not found!</div>
 
             <div class="class4">
-                <a href="file:///C:/Users/Emad/Desktop/Facebook/starter.html#">Take Me Home </a>
+                <a href="<?=URL.'/index'?>">Take Me Home </a>
             </div>
 
 
