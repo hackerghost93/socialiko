@@ -17,7 +17,7 @@ group by p.updated_at DESC;
 get private/public posts for a user:
 
 select* from posts as p join users as u on p.user_id = u.user_id
-where state = 'private' group by p.updated_at DESC;
+where state = 'private' order by p.updated_at DESC;
 
 get all users who likes a post:
 

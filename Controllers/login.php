@@ -40,10 +40,16 @@ class Login extends Controller
 			Session::set('id',$id);
 			echo Session::get('id');
 			echo 'sussecful registration';
-			header("Location:http://localhost/socialiko/index");
+			header("Location:http://localhost/socialiko/post");
 		}
 		else
 			echo 'error in registration form';
+	}
+
+	public function getUser($id)
+	{
+		$model = new Login_Model();
+		return $model->getUser($id);
 	}	
 
 }

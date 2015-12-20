@@ -1,5 +1,7 @@
 create table friends(
-	user_id1 int(11),
-	user_id2 int(11),
-	primary key (user_id1, user_id2)
+	user_id int(11),
+	friend_id int(11),
+	primary key (user_id,friend_id),
+	foreign key (user_id) references users(user_id),
+	foreign key (friend_id) references users(user_id)
 );

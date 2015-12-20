@@ -38,9 +38,50 @@ class Post_Model extends Model
 
 	}
 
-	public function getPosts($id)
+	public function getPosts($id,$state)
 	{
-		// get all posts for this id
+		if($state = "ALL")
+		{
+			$query = $this->db->prepare(
+			"select posts.user_id,posts.post_id,posts.caption
+			from posts
+			join users 
+			on posts.user_id = users.user_id
+			where 
+			posts.user_id = :id
+			order by posts.updated_at DESC"
+			);
+			if($query->execute(
+			array(
+			':id' => $id 
+			)))
+			{
+				if($query->rowCount() > 0)
+					return $query->fetchAll();
+			}
+
+		}
+		else
+		{
+			$query = $this->db->prepare(
+			"select * from posts as p 
+			join users as u on p.user_id = u.user_id
+			where 
+			user_id = :id AND state = :state
+			order by p.updated_at DESC"
+			);
+			
+			if($query->execute(
+			array(
+			':id' => $id ,
+			':state' => $state)))
+			{
+			if($query->rowCount() > 0)
+				return $query->fetchAll();
+			}
+		}
+		
+		return null ;
 	}
 }
 

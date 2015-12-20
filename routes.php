@@ -22,8 +22,8 @@ $url = explode('/',$_GET['url']);
 if(empty($url[0]))
 {
  	// he will never be here
- 	require 'Controllers/index.php';
- 	$controller = new Index();
+ 	require 'Controllers/post.php';
+ 	$controller = new Post();
  	$controller->index();
  	echo $url[0];
  	return false ;
@@ -50,7 +50,12 @@ $controller->LoadModel($url[0]);
  // add valid urls to validation
 if(isset($url[1]))
 {
- 	if(method_exists($controller,$url[1]))
+	if($url[0] == 'post' && $url[1] !='index')
+	{
+		header('Location:'.URL.'/post/index/'.$url[1]);
+		exit ;
+	}
+ 	else if(method_exists($controller,$url[1]))
 	{
 	 	if(isset($url[2]))
 		{

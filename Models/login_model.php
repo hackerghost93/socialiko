@@ -31,7 +31,7 @@ class Login_Model extends Model
 			//login and start session
 			Session::init();
 			Session::set('id',$data[0]['user_id']);
-			header("location:".URL."/index");
+			header("location:".URL."/post");
 			die();
 		}
 		else
@@ -95,6 +95,19 @@ class Login_Model extends Model
 			return 0 ;
 
 	}
+
+	public function getUser($id)
+	{
+
+		$query = $this->db->prepare(
+			"Select * from users 
+			where user_id = :id"
+			);
+
+		$query->execute(array(':id' => $id));
+		return $query->fetchAll();
+
+	}	
 }
 
 

@@ -1,5 +1,6 @@
 <?php 
-
+require_once 'Models/login_model.php';
+require_once 'Controllers/login.php';
 /**
 * 
 */
@@ -9,6 +10,11 @@ class Post extends Controller
 	function __construct()
 	{
 		parent::__construct();
+		if(Session::authenticate() == 0)
+		{
+		 	header('Location: '.URL.'/login');
+		 	exit ;
+		}
 	}
 
 	function create()
@@ -16,16 +22,38 @@ class Post extends Controller
 		$x = $this->model->create(Session::get('id'));
 		if($x == true)
 		{
-			header("Location:".URL."/index");
+			header("Location:".URL."/post");
 			echo 'successfuly created'; 
 		}
 		else 
 			echo 'error';
 	}
 
-	function getPosts()
+	function index($id = null)
 	{
-		return $this->model->getPosts(Session::get('id'));
+		//name of folder and file
+		$u = new Login();
+		// only me get access right now
+		if($id == null)
+		{
+			$this->view->access = true ;
+			$this->view->user = $u::getUser(Session::get('id'));
+			$this->view->posts = $this->getPosts(Session::get('id'));
+		}
+		else
+		{
+			$this->view->access = false ;
+			$this->view->user = $u::getUser($id);
+			$this->view->posts = $this->getPosts($id,"public");
+		} 
+		$this->view->render('post/index',false);
+
+	}
+
+	private function getPosts($id,$state="ALL")
+	{
+		$data = $this->model->getPosts($id,$state);
+		return $data ;
 	}
 }
  ?>

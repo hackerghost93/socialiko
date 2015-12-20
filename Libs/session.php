@@ -33,5 +33,6 @@ class Session
     	}
     	return Session::get('id') ;
 	}
+
 }
  ?>
