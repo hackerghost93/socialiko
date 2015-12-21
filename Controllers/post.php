@@ -22,11 +22,13 @@ class Post extends Controller
 		$x = $this->model->create(Session::get('id'));
 		if($x == true)
 		{
-			header("Location:".URL."/post");
 			echo 'successfuly created'; 
+			header("Location:".URL."/post");
+			exit;
 		}
 		else 
 			echo 'error';
+		exit;
 	}
 
 	function index($id = null)

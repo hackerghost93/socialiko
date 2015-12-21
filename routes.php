@@ -52,6 +52,11 @@ if(isset($url[1]))
 {
 	if($url[0] == 'post' && $url[1] !='index')
 	{
+		if($url[1] == 'create')
+		{
+			$controller->create();
+			exit;
+		}
 		header('Location:'.URL.'/post/index/'.$url[1]);
 		exit ;
 	}

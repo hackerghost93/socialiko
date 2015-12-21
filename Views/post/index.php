@@ -12,10 +12,6 @@
 	<h3>Phone : <?= $this->user[0]['phone']?></h3> 
 	<h3>Gender : <?= $this->user[0]['gender']?></h3> 
 	<h3>Marital Status : <?= $this->user[0]['martial_status']?></h3>
-	<?php if ($this->access == true): ?>
-		<h3>About Me : <?= $this->user[0]['about_me'] ?></h3>
-		<h3>Birthdate : <?= $this->user[0]['birthdate'] ?></h3>
-	<?php endif ?> 
 	<form action="<?=URL?>/post/create" method="post">
 		<h1>
 			New Post

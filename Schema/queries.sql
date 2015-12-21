@@ -7,7 +7,7 @@ insert into friends values ('$friend2_id', '$friend1_id');
 #or make only 1 friend insertioin and use union to get mutual friends.
 get mutual friends:
 
-select* from users as u join friends as f on u.user_id = f.user_id1;
+select* from users as u join friends as f on u.user_id = '$user_id';
 
 get all posts for a user:
 

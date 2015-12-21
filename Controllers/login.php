@@ -19,6 +19,7 @@ class Login extends Controller
 	{
 		// see login data in the users model
 		$this->model->run();
+		header('Location:'.URL.'/post');
 	}
 	public static function logout()
 	{

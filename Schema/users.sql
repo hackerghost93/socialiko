@@ -10,7 +10,7 @@ Create table users(
 	hometown varchar(63),
 	martial_status enum('single','engaged','married'),
 	about_me text(2047),
-	image_path varchar(255) NOT NULL,
+	image_path varchar(255),
 	created_at timestamp NOT NULL default '0000-00-00 00:00:00',
 	updated_at timestamp NOT NULL default current_timestamp on update current_timestamp
 );
