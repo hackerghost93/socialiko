@@ -17,50 +17,35 @@ class Login_Model extends Model
 		// badal :password -> md5(:password) to hash password
 		$query = $this->db->prepare("Select user_id 
 			from users 
-			where email= :email 
-			AND password= :password");
-		$query->execute(array(
+			where email=:email 
+			AND password=md5(:password)");
+		if(
+			$query->execute(array(
 			':email' => $_POST['email'] ,
-			':password' => $_POST['password']
-			));
-		// to translate relation
-		$data = $query->fetchAll();
-		// if exist one with that id or pass
-		if($query->rowCount() > 0)
+			':password' =>$_POST['password']
+			))
+		)
 		{
-			//login and start session
-			Session::init();
-			Session::set('id',$data[0]['user_id']);
-			header("location:".URL."/post");
-			die();
+			if($query->rowCount() > 0)
+			{
+				// return id 
+				$data = $query->fetch();	
+				return $data[0]['user_id'];
+			}
+			// return invalid id
+			else 
+				return -1 ;
 		}
-		else
+		else 
 		{
-			// show error
-			echo 'invalid email or password';
-			header('Location:'.URL."/login",true);
-			die();
+			echo 'error access database';
+			exit;
 		}
-		// print an array for debug
-		//print_r($data);
 	}
 
-	private function getValue($x)
-	{
-		//if(isset($_POST))
-	}
 
 	public function sign_up()
 	{
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
-		$email = $_POST['email'];
-		$password = md5($_POST['password']);
-		$phone = $_POST['phone'];
-		$gender = $_POST['gender'];
-		$status = $_POST['status'];
-		$birthday = $_POST['birthday'];
-		$aboutme = $_POST['aboutme'];
 		//insert query
 		$query = $this->db->prepare("Insert into users 
 			(first_name,last_name,email,password
@@ -78,7 +63,7 @@ class Login_Model extends Model
 		':firstname' => $_POST['firstname'],
 		':lastname' => $_POST['lastname'],
 		':email' => $_POST['email'],
-		':password' => md5($_POST['password']),
+		':password' => $_POST['password'],
 		':phone' => $_POST['phone'],
 		':gender' =>$_POST['gender'],
 		':birthdate' => $_POST['birthday'],

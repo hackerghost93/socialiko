@@ -1,0 +1,13 @@
+.container{
+	width : 70%;
+	margin-top: 5% ;
+}
+body{
+	background-position: left top;
+    background-image: url(Public/Files/back.jpg);
+    background-repeat: no-repeat;
+}
+
+#header{
+	position: fixed;
+}

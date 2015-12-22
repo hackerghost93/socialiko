@@ -18,8 +18,18 @@ class Login extends Controller
 	public function run()
 	{
 		// see login data in the users model
-		$this->model->run();
-		header('Location:'.URL.'/post');
+		$bool = $this->model->run();
+		if($bool > 0)
+		{
+			Session::init();
+			Session::set('id',$bool);
+			header('Location:'.URL.'/post/index');
+		}
+		else
+		{
+			header('Location:'.URL.'/login');
+		}
+		exit;
 	}
 	public static function logout()
 	{
