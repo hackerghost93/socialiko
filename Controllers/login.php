@@ -61,7 +61,7 @@ class Login extends Controller
 	{
 		$model = new Login_Model();
 		return $model->getUser($id);
-	}	
+	}
 
 }
 
