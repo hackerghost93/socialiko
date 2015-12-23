@@ -23,7 +23,6 @@ class Friend extends Controller
 			$id = Session::get('id');
 		}
 		$data = $this->model->getFriends($id);
-		print_r($data);
 		$this->view->friends = $data ;
 		$this->view->render('friend/index',0);
 	}
