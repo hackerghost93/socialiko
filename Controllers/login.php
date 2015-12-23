@@ -18,7 +18,7 @@ class Login extends Controller
 	public function run()
 	{
 		// see login data in the users model
-		$bool = $this->model->run();
+		$bool = $this->model->run(); 
 		if($bool > 0)
 		{
 			Session::init();

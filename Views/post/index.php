@@ -3,8 +3,13 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Socialiko</title>
-	<link rel="stylesheet" href="<?=URL?>/Public/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?=URL?>/Public/bootstrap/css/styles.css" >
+	<link rel="stylesheet" type="text/css" href="<?=URL?>/Public/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=URL?>/Public/bootstrap/css/styles.css">
+	<style type="text/css">
+		.container{
+			margin-top: 50px ;
+		}
+	</style>
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -34,15 +39,20 @@
 
 			<ul class="nav navbar-nav pull-right">
 				<li><a href="<?=URL?>/post/index">Home</a></li>
-				<li><a href="<?=URL?>/post/index">Friends</a></li>
+				<li><a href="<?=URL?>/friend/getFriends">Friends</a></li>
 				<li><a href="<?=URL?>/login/logout">Sign out</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="container">
 		<div class="user data">
-			<?php print_r($this->user);?>
 			<h1><?= $this->user[0]['first_name'].' '.$this->user[0]['last_name']?> 's profile</h1>
+			<?php if($this->access == false):?>
+				<!-- it can be done with js -->
+				<form action="<?=URL?>/friend/AddFriend/<?=$this->id?>" method="get">
+					<button type="submit" class="btn btn-default">Add Friend</button>
+				</form>
+			<?php endif; ?>
 			<hr/>
 			<h3>HomeTown : <?= $this->user[0]['hometown']?></h3>
 			<h3>Phone : <?= $this->user[0]['phone']?></h3> 

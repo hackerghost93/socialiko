@@ -16,7 +16,7 @@ class Friend_Model extends Model
 		$query = $this->db->prepare(
 			"Select * from friends 
 			join users on users.user_id = friends.friend_id
-			where users.user_id = :id"
+			where friends.user_id = :id"
 			);
 		if($query->execute(array(
 			':id' => $id 
@@ -37,15 +37,19 @@ class Friend_Model extends Model
 
 	function addFriend($user ,$friend)
 	{
+		// echo $user." ".$friend;
+		// die();
 		$query = $this->db->prepare(
 			"Insert into friends (user_id,friend_id)
 			values 
 			(:user , :friend)"
 			);
-		return $query->execute(array(
+		return $query->execute(
+			array(
 			':user' => $user ,
 			':friend' => $friend 
-			);
+			)
+		);
 	}
 }
 

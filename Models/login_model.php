@@ -29,8 +29,8 @@ class Login_Model extends Model
 			if($query->rowCount() > 0)
 			{
 				// return id 
-				$data = $query->fetch();	
-				return $data[0]['user_id'];
+				$data = $query->fetch();
+				return $data['user_id'];
 			}
 			// return invalid id
 			else 

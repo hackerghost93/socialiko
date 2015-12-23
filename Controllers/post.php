@@ -38,12 +38,14 @@ class Post extends Controller
 		// only me get access right now
 		if($id == null)
 		{
+			$thos->view->id = Session::get('id');
 			$this->view->access = true ;
 			$this->view->user = $u::getUser(Session::get('id'));
 			$this->view->posts = $this->getPosts(Session::get('id'));
 		}
 		else
 		{
+			$this->view->id = $id ;
 			$this->view->access = false ;
 			$this->view->user = $u::getUser($id);
 			$this->view->posts = $this->getPosts($id,"public");

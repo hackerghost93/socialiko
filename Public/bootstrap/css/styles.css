@@ -1,13 +1,11 @@
-.container{
+.container {
 	width : 70%;
-	margin-top: 5% ;
+	margin-top: 1000px ;
+	/*background-color: red ;*/
 }
-body{
-	background-position: left top;
-    background-image: url("back.jpg");
-    background-repeat: no-repeat;
-}
-
-#header{
-	position: fixed;
+body {
+	/*background-position: left top;*/
+    /*background-image: url("back.jpg");*/
+    /*background-repeat: no-repeat;*/
+    background-color: red ;
 }
