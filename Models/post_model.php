@@ -42,6 +42,8 @@ class Post_Model extends Model
 	{
 		if($state = "ALL")
 		{
+			// echo "there";
+			// die();
 			$query = $this->db->prepare(
 			"select posts.user_id,posts.post_id,posts.caption
 			from posts
@@ -63,6 +65,8 @@ class Post_Model extends Model
 		}
 		else
 		{
+			echo "here";
+			die();
 			$query = $this->db->prepare(
 			"select * from posts as p 
 			join users as u on p.user_id = u.user_id

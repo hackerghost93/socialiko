@@ -23,6 +23,8 @@ class Friend extends Controller
 			$id = Session::get('id');
 		}
 		$data = $this->model->getFriends($id);
+		if(empty($data))
+			$data = null ;
 		$this->view->friends = $data ;
 		$this->view->render('friend/index',0);
 	}
@@ -45,6 +47,12 @@ class Friend extends Controller
 		}
 		echo 'something went wrong';
 		die();
+	}
+	
+	public function isFriend($id,$friend)
+	{
+		$model = new Friend_Model();
+		return $model->isFriend($id,$friend);
 	}
 }
 

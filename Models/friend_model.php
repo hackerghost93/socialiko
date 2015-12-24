@@ -51,6 +51,38 @@ class Friend_Model extends Model
 			)
 		);
 	}
+
+	function isFriend($user,$friend)
+	{	
+
+		//echo "user id = ".$user."friend = ".$friend."\n";
+
+		$query  = $this->db->prepare("
+			Select * 
+			from friends 
+			where user_id = :user 
+			and friend_id = :friend
+			");
+
+		if($query->execute(
+			array(
+				':user' => $user ,
+				':friend' => $friend 
+				)
+			)
+		)
+		{
+			if($query->rowCount() > 0)
+				return true ;
+			return false ;
+		}
+		else
+		{
+			echo 'Error with database';
+			die();
+		}
+
+	}
 }
 
  ?>

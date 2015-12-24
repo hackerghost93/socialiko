@@ -92,7 +92,27 @@ class Login_Model extends Model
 		$query->execute(array(':id' => $id));
 		return $query->fetchAll();
 
-	}	
+	}
+	// get request
+	public function search($x)
+	{
+		$query = $this->db->prepare(
+			"
+			select * 
+			from users 
+			where 
+			email like Concat('%',:x,'%') or
+			first_name like Concat('%',:x,'%') or
+			last_name = Concat('%',:x,'%') or
+			phone = Concat('%',:x,'%') or
+			hometown = Concat('%',:x,'%') 
+			");
+		$query->execute(array(
+			':x' => $x
+			));
+		$x = $query->fetchAll();
+		return $x ;
+	}
 }
 
 
