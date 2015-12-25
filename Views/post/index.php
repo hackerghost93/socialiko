@@ -38,7 +38,6 @@
 		<?php endif; ?>
 		<div class="smiles">
 		<?php
-		print_r($this->posts);
 		for ($i = 0 ; $i < count($this->posts) ;$i++) {
 			echo '<div class="post">';
 			echo '<h3>'.$this->posts[$i]['caption'].'</h3>';

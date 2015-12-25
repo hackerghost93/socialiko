@@ -5,6 +5,9 @@
   <title>Socialiko</title>
   <link rel="stylesheet" type="text/css" href="<?=URL?>/Public/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="<?=URL?>/Public/Files/Emotions Template/jquery.emotions.fb.css">
+    <?php foreach ($this->styles as $style): ?>
+        <link rel="stylesheet" type="text/css" href="<?=$style?>">
+    <?php endforeach; ?>
   <script src="<?=URL?>/Public/bootstrap/js/smiles.js"></script>
   <script src="<?=URL?>/Public/Files/Emotions Template/jquery.emotions.js"></script>
   <style type="text/css">
