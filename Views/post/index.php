@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="<?=URL?>/Public/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?=URL?>/Public/Files/Emotions Template/jquery.emotions.fb.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="<?=URL?>/Public/Files/Emotions Template/jquery.emotions.js"></script>
 	<style type="text/css">
 		.container{
 			margin-top: 50px ;
@@ -101,5 +102,6 @@
     $(document).ready(function(){
         $('.smiles').emotions();
     });
+	</script>
 </body>
 </html>
