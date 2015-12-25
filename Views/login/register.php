@@ -23,7 +23,7 @@
       <div class="register-box-body">
         <p class="login-box-msg">it is free and always will be , register now</p>
         <a href="<?= URL?>/login">OR SIGN IN</a>
-        <form action="register" method="post">
+        <form action="register" method="post" enctype="multipart/form-data">
 
           <div class="form-group has-feedback">
             <input type="text" name="firstname" class="form-control" placeholder="First name">
@@ -83,7 +83,7 @@
         <br/>
 
         <label>Profile Picture</label>
-        <input type='file' name='userFile'><br>
+        <input type="file" name="profile_picture"><br>
 
 
       <label class = "aboutme">About yourself :</label><br><br>

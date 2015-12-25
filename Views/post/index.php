@@ -1,6 +1,7 @@
 
 		<div class="user-data">
 			<h1><?= $this->user[0]['first_name'].' '.$this->user[0]['last_name']?> 's profile</h1>
+			<img src="<?=$this->user[0]['image_path']?>">
 			<?php if($this->access == false):?>
 				<!-- it can be done with js -->
 				<?php if($this->friend != true): ?>
