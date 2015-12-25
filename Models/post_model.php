@@ -87,6 +87,22 @@ class Post_Model extends Model
 		
 		return null ;
 	}
+
+	public function search($x)
+	{
+		$query = $this->db->prepare(
+			"
+			select * 
+			from posts
+			where 
+			caption like Concat('%',:x,'%')
+			");
+		$query->execute(array(
+			':x' => $x
+			));
+		$x = $query->fetchAll();
+		return $x ;
+	}
 }
 
 

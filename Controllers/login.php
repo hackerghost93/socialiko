@@ -63,11 +63,12 @@ class Login extends Controller
 		return $model->getUser($id);
 	}
 
-	public function search()
+	public function search($x)
 	{
+		$model = new Login_Model();
 		$x = $_GET['val'];
-		$data =$this->model->search($x);
-		
+		$data =$model->search($x);
+		return $data ;
 	}
 
 }

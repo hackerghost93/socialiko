@@ -26,7 +26,7 @@ class Friend extends Controller
 		if(empty($data))
 			$data = null ;
 		$this->view->friends = $data ;
-		$this->view->render('friend/index',0);
+		$this->view->render('friend/index');
 	}
 
 

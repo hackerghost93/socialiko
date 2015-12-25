@@ -58,7 +58,7 @@ class Post extends Controller
 			$this->view->user = $u::getUser($id);
 			$this->view->posts = $this->getPosts($id,"public");
 		} 
-		$this->view->render('post/index',false);
+		$this->view->render('post/index');
 
 	}
 
@@ -67,6 +67,17 @@ class Post extends Controller
 		echo $state ;
 		$data = $this->model->getPosts($id,$state);
 		return $data ;
+	}
+
+	public function search()
+	{
+		$x = $_GET['val'];
+		$posts =$this->model->search($x);
+		$controllerLogin = new Login();
+		$users = $controllerLogin->search($x);
+		$this->view->users = $users ;
+		$this->view->posts = $posts ;
+		$this->view->render('post/results');
 	}
 }
  ?>

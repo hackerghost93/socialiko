@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8" />
-	<title>Socialiko</title>
-	<style type="text/css">
-		.container{
-			width : 70%;
-		}
-		a{
-			text-decoration: none ; 
-		}
-		.user{
-			border: 1px solid black ;
-			text-align: center ;
-		}
-	</style>
-</head>
-	
-<body>
-	<div class="container">
 	<h1>Your Friends</h1>
 	<hr/>
 		<?php if(is_null($this->friends)): ?>
@@ -32,6 +11,3 @@
 				</div>
 			<?php endforeach; ?>
 		<?php endif; ?>
-	</div>
-</body>
-</html>

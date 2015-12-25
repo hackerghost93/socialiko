@@ -57,6 +57,11 @@ if(isset($url[1]))
 			$controller->create();
 			exit;
 		}
+		if($url[1] == 'search')
+		{
+			$controller->search();
+			exit;
+		}
 		header('Location:'.URL.'/post/index/'.$url[1]);
 		exit ;
 	}

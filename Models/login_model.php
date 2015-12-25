@@ -107,11 +107,20 @@ class Login_Model extends Model
 			phone = Concat('%',:x,'%') or
 			hometown = Concat('%',:x,'%') 
 			");
-		$query->execute(array(
+		if($query->execute(array(
 			':x' => $x
-			));
-		$x = $query->fetchAll();
-		return $x ;
+			)))
+		{
+			if($query->rowCount()>0)
+				$x = $query->fetchAll();
+			else
+				$x = null ;
+			return $x ;
+		}
+		else{
+			echo "Something went wrong";
+			die();
+		} 
 	}
 }
 
