@@ -18,13 +18,15 @@
 		</div>
 		<?php if($this->access == true): ?>
 		<div class="form-group">
-		<form action="<?=URL?>/post/create" method="post" >
+		<form action="<?=URL?>/post/create" method="post" enctype="multipart/form-data" >
 			<h1>
 				New Post
 			</h1>
 			<hr/>
 			<textarea name="caption" placeholder="Write post" rows="7" cols="70" class="form-control"></textarea>
 			<br />
+			<label for="post_picture">Insert Image</label>
+		    <input type="file" id="exampleInputFile" name="post_picture">
 			<div class="radio">
 				<label><input type="radio" value="private" name="state" />private</label>	
 				<label><input type="radio" value="public" name="state" />public</label>
@@ -36,10 +38,11 @@
 		<?php endif; ?>
 		<div class="smiles">
 		<?php
+		print_r($this->posts);
 		for ($i = 0 ; $i < count($this->posts) ;$i++) {
 			echo '<div class="post">';
 			echo '<h3>'.$this->posts[$i]['caption'].'</h3>';
-			//echo '<br/>';
+			echo '<img src="'.$this->posts[$i]['image_path'].'">';
 			echo"</div>";
 			echo "\n";
 		}

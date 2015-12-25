@@ -13,11 +13,67 @@ class Post_Model extends Model
 
 	function create($id)
 	{
+		if(
+			isset($_FILES['post_picture'])
+			&&
+			is_uploaded_file($_FILES['post_picture']['tmp_name'])
+			)
+		{
+			$temp = explode('.', $_FILES['post_picture']['name']);
+			$imageFileType = end($temp);
+			$target_name ='image_' . date('Y-m-d-H-i-s') . '_' . uniqid().".".$imageFileType;
+			if(file_exists("Public/posts_pictures/".$target_name)) {
+    			chmod("Public/posts_pictures/".$target_name,0755); //Change the file permissions if allowed
+ 		    	unlink("Public/posts_pictures/".$target_name); //remove the file
+			}
+			$target_dir = "Public/posts_pictures/";
+			$target_file = $target_dir.$target_name;
+			$uploadok = 1 ;
+			$check = getimagesize($_FILES["post_picture"]["tmp_name"]);
+			if($check !== false)
+			{
+				$uploadok = 1;
+			}
+			else
+			{
+				echo "File is not an image\n";
+				$uploadok = 0 ;
+			}
+			if ($_FILES["post_picture"]["size"] > 500000) {
+				echo "Sorry, your file is too large.";
+				$uploadok = 0 ;
+			}
+			if($check !==  false)
+			{
+				$uploadok = 1;
+			}
+			if($imageFileType != "jpg" && $imageFileType != "png" 
+				&& $imageFileType != "jpeg"
+				&& $imageFileType != "gif" ) {
+				echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			$uploadok = 0;
+		}
+		if($uploadok == 0)
+		{
+			echo "sorry upload failed";
+		}		
+		if (move_uploaded_file($_FILES["post_picture"]["tmp_name"], $target_file)) {
+			echo "Upload Complete\n";
+		}
+		else 
+		{
+			echo 'something went wrong';
+		}
+	}
+	else
+	{
+		$target_file = null ;
+	}
 		$query = $this->db->prepare(
 			"Insert into posts 
-			(user_id,state,caption,created_at,updated_at)
+			(user_id,state,caption,image_path,created_at,updated_at)
 			values
-			(:user_id,:state,:caption,:created_at,:updated_at)
+			(:user_id,:state,:caption,:image_path,:created_at,:updated_at)
 			");
 		// the null in the array to set the created at time it's not null
 		if($query->execute(
@@ -25,6 +81,7 @@ class Post_Model extends Model
 				':user_id' => $id,
 				':state' => $_POST['state'],
 				':caption' => $_POST['caption'] ,
+				':image_path' => $target_file,
 				':created_at' => null ,
 				':updated_at' => null  
 				)
@@ -45,7 +102,8 @@ class Post_Model extends Model
 			// echo "there";
 			// die();
 			$query = $this->db->prepare(
-			"select posts.user_id,posts.post_id,posts.caption
+			"select posts.user_id,posts.post_id,posts.caption,
+			posts.image_path
 			from posts
 			join users 
 			on posts.user_id = users.user_id

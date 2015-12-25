@@ -57,7 +57,7 @@ class Login_Model extends Model
 		{
 			$temp = explode('.', $_FILES['profile_picture']['name']);
 			$imageFileType = end($temp);
-			$target_name ='image_' . date('Y-m-d-H-i-s') . '_' . uniqid().$imageFileType;
+			$target_name ='image_' . date('Y-m-d-H-i-s') . '_' . uniqid().".".$imageFileType;
 			if(file_exists("Public/profile_pictures/".$target_name)) {
     			chmod("Public/profile_pictures/".$target_name,0755); //Change the file permissions if allowed
  		    	unlink("Public/profile_pictures/".$target_name); //remove the file
