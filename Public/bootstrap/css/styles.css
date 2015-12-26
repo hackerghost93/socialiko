@@ -1,16 +1,28 @@
 body {
-	background-position: left top;
+	/*background-position: left top;
     background-image: url("back.jpg");
     background-repeat: no-repeat;
-    /*background-color: red ;*/
+    background-color: red ;*/
 }
 .user-data img
 {
 	width : 200px !important;
+	float : right ;
+	padding : 10px;
 }
 img:hover {
     border: 1px solid #777;
 }
 img{
 	width :300px;
+}
+.container{
+  margin-top: 50px ;
+  width : 70%;
+  border : 2px solid red ;
+}
+.user-data{
+	margin:20px;
+  	border : 1px solid black;
+  	padding: 20px ;
 }

@@ -5,21 +5,13 @@
   <title>Socialiko</title>
   <link rel="stylesheet" type="text/css" href="<?=URL?>/Public/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="<?=URL?>/Public/Files/Emotions Template/jquery.emotions.fb.css">
+  <?php if(isset($this->styles)): ?>
     <?php foreach ($this->styles as $style): ?>
         <link rel="stylesheet" type="text/css" href="<?=$style?>">
     <?php endforeach; ?>
+  <?php endif; ?>
   <script src="<?=URL?>/Public/bootstrap/js/smiles.js"></script>
   <script src="<?=URL?>/Public/Files/Emotions Template/jquery.emotions.js"></script>
-  <style type="text/css">
-    .container{
-      margin-top: 50px ;
-      width : 70%;
-    }
-    .user-data{
-      border : 1px solid black;
-      padding: 20px ;
-    }
-  </style>
 </head>
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

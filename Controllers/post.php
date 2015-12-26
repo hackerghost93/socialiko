@@ -43,6 +43,7 @@ class Post extends Controller
 		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
 		if($id == null)
 		{
+			$this->view->me = true ;
 			$this->view->id = Session::get('id');
 			$this->view->access = true ;
 			$this->view->user = $u::getUser(Session::get('id'));
@@ -50,12 +51,12 @@ class Post extends Controller
 		}
 		else
 		{
+			$this->view->me = false ;
 			if($friendCon->isFriend(Session::get('id'),$id))
-				$this->view->friend = true ;
+				$this->view->access = true ;
 			else
-				$this->view->friend = false ;
+				$this->view->access = false ;
 			$this->view->id = $id ;
-			$this->view->access = false ;
 			$this->view->user = $u::getUser($id);
 			$this->view->posts = $this->getPosts($id,"public");
 		} 
