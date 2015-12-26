@@ -1,6 +1,8 @@
 <?php 
 require_once 'Models/login_model.php';
 require_once 'Models/friend_model.php';
+require_once 'Models/friend_request_model.php';
+require_once 'Controllers/friend_request.php';
 require_once 'Controllers/login.php';
 require_once 'Controllers/friend.php';
 /**
@@ -37,6 +39,7 @@ class Post extends Controller
 	{
 		//name of folder and file
 		$u = new Login();
+		$requestController = new Friend_Request();
 		// only me get access right now
 		$friendCon = new Friend();
 		$this->view->styles = array();
@@ -55,7 +58,10 @@ class Post extends Controller
 			if($friendCon->isFriend(Session::get('id'),$id))
 				$this->view->access = true ;
 			else
+			{
 				$this->view->access = false ;
+				$this->view->requested = $requestController->isRequested($id);
+			}
 			$this->view->id = $id ;
 			$this->view->user = $u::getUser($id);
 			$this->view->posts = $this->getPosts($id,"public");

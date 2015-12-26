@@ -25,21 +25,17 @@ class Friend extends Controller
 		$data = $this->model->getFriends($id);
 		if(empty($data))
 			$data = null ;
+		$this->view->styles = array();
+		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
 		$this->view->friends = $data ;
 		$this->view->render('friend/index');
 	}
 
 
-	function addFriend($friend)
+	public static function addFriend($id,$friend)
 	{
 		$mod = new Friend_Model();
-		if(Session::get('id') == $friend)
-		{
-			// get Error class to work;
-			echo 'invalid operation';
-			die();
-		}
-		$x = $mod->AddFriend(Session::get('id'),$friend);
+		$x = $mod->AddFriend($id,$friend);
 		if($x)
 		{
 			header("Location:".URL."/friend/getFriends");

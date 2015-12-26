@@ -4,9 +4,13 @@
 			<img src="<?=$this->user[0]['image_path']?>">
 			<?php if($this->access == false):?>
 				<!-- it can be done with js -->
-					<form action="<?=URL?>/friend/AddFriend/<?=$this->id?>" method="get">
+					<?php if($this->requested): ?>
+						<h4>request is sent</h4>
+					<?php else: ?>
+					<form action="<?=URL?>/friend_request/request/<?=$this->id?>" method="get">
 						<button type="submit" class="btn btn-default">Add Friend</button>
 					</form>
+					<?php endif; ?>
 			<?php endif; ?>
 			<h3>HomeTown : <?= $this->user[0]['hometown']?></h3>
 			<h3>Phone : <?= $this->user[0]['phone']?></h3> 

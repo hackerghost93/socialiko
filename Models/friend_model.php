@@ -42,7 +42,8 @@ class Friend_Model extends Model
 		$query = $this->db->prepare(
 			"Insert into friends (user_id,friend_id)
 			values 
-			(:user , :friend)"
+			(:user , :friend),
+			(:friend,:user)"
 			);
 		return $query->execute(
 			array(

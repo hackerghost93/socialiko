@@ -154,6 +154,7 @@ class Post_Model extends Model
 			from posts
 			where 
 			caption like Concat('%',:x,'%')
+			and state='public'
 			");
 		$query->execute(array(
 			':x' => $x
