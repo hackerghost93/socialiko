@@ -69,7 +69,7 @@ function birthday_is_valid(x) {
 	var year = today.getUTCFullYear();
 	var arr = x.split("-");//year month day
 	if(arr[0] < year) return true;
-	if(arr[0] == year && arr[1] < month) return false;
+	if(arr[0] == year && arr[1] < month) return true;
 	if(arr[0] == year && arr[1] == month)
 		return arr[2] <= day;
 	return false;

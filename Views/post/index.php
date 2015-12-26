@@ -30,7 +30,7 @@
 		    <input type="file" id="exampleInputFile" name="post_picture">
 			<div class="radio">
 				<label><input type="radio" value="private" name="state" />private</label>	
-				<label><input type="radio" value="public" name="state" />public</label>
+				<label><input type="radio" value="public" name="state" checked="checked" />public</label>
 			</div>
 			<br/>
 			<button type="submit" class="btn btn-default">Add Post</button>
