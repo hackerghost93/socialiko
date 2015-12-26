@@ -102,7 +102,8 @@ class Post_Model extends Model
 			// echo "there";
 			// die();
 			$query = $this->db->prepare(
-			"select *
+			"select posts.image_path,posts.caption,posts.state,
+			posts.created_at
 			from posts
 			join users 
 			on posts.user_id = users.user_id
