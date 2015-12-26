@@ -79,7 +79,7 @@
       	<input type="radio" name="status" value="married" /><br><br>
 
         <label class = "Birthday">Birthday : </label>
-        <input type="date" name="birthday"/>
+        <input type="date" max="2016-12-31" min="1900-01-01" name="birthday" id = "birthday"/>
         <br/>
 
         <label>Profile Picture</label>
