@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?= URL?>/Public/dist/css/AdminLTE.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="<?= URL?>/Public/plugins/iCheck/square/blue.css">
-
+    <script src = "<?= URL?>/Views/login/validate_register.js"></script>
   </head>
   <body class="hold-transition register-page">
     <div class="register-box">
@@ -23,30 +23,30 @@
       <div class="register-box-body">
         <p class="login-box-msg">it is free and always will be , register now</p>
         <a href="<?= URL?>/login">OR SIGN IN</a>
-        <form action="register" method="post" enctype="multipart/form-data">
+        <form action="register" method="post" enctype="multipart/form-data" onsubmit = "return validate()">
 
           <div class="form-group has-feedback">
-            <input type="text" name="firstname" class="form-control" placeholder="First name">
+            <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First name">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
 
           <div class="form-group has-feedback">
-            <input type="text" name="lastname" class="form-control" placeholder="Last name">
+            <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last name">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
 
           <div class="form-group has-feedback">
-            <input type="email" name="email" class="form-control" placeholder="Email">
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email">
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           </div>
 
           <div class="form-group has-feedback">
-            <input type="password" name="password"class="form-control" placeholder="Password">
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
 
           <div class="form-group has-feedback">
-            <input type="password" name="password2"class="form-control" placeholder="Confirm password">
+            <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm password">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
 
@@ -57,22 +57,22 @@
           </div> -->
 
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Phone number" name="phone">
+            <input type="text" class="form-control" placeholder="Phone number" name="phone" id="phone">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
 
           <div class="form-group has-feedback">
-            <input type="text" name="hometown" class="form-control" placeholder="Hometown">
+            <input type="text" name="hometown" class="form-control" placeholder="Hometown" id="hometown">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
 
-          <label class = "Gender">Select Gender :</label>
-      <label class = "male">Male </label><input type="radio" name="gender" value="male" />
+          <label class = "Gender">Select Gender : </label>
+      <label class = "male">Male </label><input type="radio" name="gender" value="male" checked="checked"/>
         <label>Female</label><input type="radio" name="gender" value="female" /><br><br>
 
       <label class = "Marital">Status : </label>
       <label class = "Single">Single</label>
-      	<input type="radio" name="status" value="single"/>
+      	<input type="radio" name="status" value="single" checked="checked"/>
       <label>Engaged</label>
       	<input type="radio" name="status" value="engaged" />
       <label> Married</label>
