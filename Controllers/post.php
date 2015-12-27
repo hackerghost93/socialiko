@@ -2,9 +2,12 @@
 require_once 'Models/login_model.php';
 require_once 'Models/friend_model.php';
 require_once 'Models/friend_request_model.php';
+require_once 'Models/like_model.php';
 require_once 'Controllers/friend_request.php';
 require_once 'Controllers/login.php';
 require_once 'Controllers/friend.php';
+require_once 'Controllers/like.php';
+
 /**
 * 
 */
@@ -72,9 +75,13 @@ class Post extends Controller
 
 	private function getPosts($id,$state="ALL")
 	{
-		echo $state ;
+		$like_controller = new Like();
 		$data = $this->model->getPosts($id,$state);
-		return $data ;
+		for($i = 0 ; $i < count($data) ; ++$i) {
+			$like_data = $like_controller->getLikes($data[$i]['post_id']);
+			$data[$i]['likes'] = $like_data;
+		}
+		return $data;
 	}
 
 	public function search()

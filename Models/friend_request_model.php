@@ -64,9 +64,10 @@ class Friend_Request_Model extends Model
 	{
 		$query = $this->db->prepare(
 			"Select * from friend_requests
-			where user_id = :id 
-			and friend_id = :friend"
-			);
+			where (user_id = :id 
+			and friend_id = :friend)
+			or (user_id = :friend and friend_id = :id)
+			");
 		if($query->execute(
 		 array(':id' => $id,
 		 ':friend' => $friend )))

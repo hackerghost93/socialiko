@@ -50,7 +50,16 @@
 			echo '<h3>'.$this->posts[$i]['caption'].'</h3>';
 			if($this->posts[$i]['image_path'] != null)
 				echo '<img src="'.$this->posts[$i]['image_path'].'">';
-			echo"</div>";
+			if($this->posts[$i]['likes'] != null)
+				for($j = 0 ; $j < count($this->posts[$i]['likes']) ; ++$j) {
+					echo '<h4>'.$this->posts[$i]['likes']['first_name']." ".
+								$this->posts[$i]['likes']['last_name'].'</h4>'."<br/>";
+				}
+			//URL problem
+			echo '<form action ="'.URL.'/like/createLike" method = "post" enctype="multipart/form-data"><br/>';
+			echo "<input type = \"submit\" class = \"btn btn-default\" value = \"Like\" />"."<br/>";
+			echo "</form>"."<br/>";
+			echo "</div>";
 			echo "\n";
 			}
 		}
