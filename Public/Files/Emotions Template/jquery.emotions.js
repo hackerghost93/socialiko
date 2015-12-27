@@ -33,7 +33,7 @@
                 ":-)": "smile",
                 ":]": "smile",
                 "8|": "sunglasses",
-                ":/": "unsure",
+                ":-/": "unsure",
                 ";)": "wink",
                 ":'(": "cry",
                 ">:(": "grumpy",

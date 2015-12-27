@@ -12,7 +12,9 @@ class Like_Model extends Model
 
 	function getLikes($post_id) {
 		$query = $this->db->prepare("
-			Select* from likes as l
+			Select u.first_name, u.last_name,
+			l.post_id, l.user_id 
+			from likes as l
 			join users as u on u.user_id = l.user_id
 			where l.post_id = :post_id
 		");
@@ -50,7 +52,7 @@ class Like_Model extends Model
 	}
 
 	function createLike($user_id, $post_id) {
-		$query = $this->$db->prepare("
+		$query = $this->db->prepare("
 			Insert into likes
 			(user_id, post_id)
 			values (:user_id, :post_id)

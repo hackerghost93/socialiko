@@ -19,6 +19,7 @@ class Like extends Controller
 	{
 		$model = new Like_Model();
 		$x = $model->createLike(Session::get('id'), $post_id);
+		echo 'here';
 		if($x == true)
 		{
 			echo 'Like successfuly created'; 

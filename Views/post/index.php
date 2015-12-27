@@ -42,27 +42,28 @@
 		</div>
 		<?php endif; ?>
 		<div class="smiles">
-		<?php
-		for ($i = 0 ; $i < count($this->posts) ;$i++) {
-			if($this->access == true && $this->posts[$i]['state'] == 'public')
-			{
-			echo '<div class="post">';
-			echo '<h3>'.$this->posts[$i]['caption'].'</h3>';
-			if($this->posts[$i]['image_path'] != null)
-				echo '<img src="'.$this->posts[$i]['image_path'].'">';
-			if($this->posts[$i]['likes'] != null)
-				for($j = 0 ; $j < count($this->posts[$i]['likes']) ; ++$j) {
-					echo '<h4>'.$this->posts[$i]['likes']['first_name']." ".
-								$this->posts[$i]['likes']['last_name'].'</h4>'."<br/>";
+			<?php
+			for ($i = 0 ; $i < count($this->posts) ;$i++) {
+				if($this->access == true && $this->posts[$i]['state'] == 'public')
+				{
+					echo '<div class="post">';
+					echo '<h3>'.$this->posts[$i]['caption'].'</h3>';
+					if($this->posts[$i]['image_path'] != null)
+						echo '<img src="'.$this->posts[$i]['image_path'].'"/>';
+					echo '<h2>Liked from:</h2>';
+					if($this->posts[$i]['likes'] != null) {
+						for($j = 0 ; $j < count($this->posts[$i]['likes']) ; ++$j) {
+						 	echo '<h4>'.$this->posts[$i]['likes'][$j]['first_name']." ".
+										$this->posts[$i]['likes'][$j]['last_name'].'</h4>'."</br>";
+						}
+					} else echo '<h4>No one</h4>';
+					echo '<form action ="'.URL.'/like/createLike/'.$this->posts[$i]['post_id'].'" method = "post"></br>';
+					echo "<input type = \"submit\" class = \"btn btn-default\" value = \"Like\" />"."</br>";
+					echo "</form>"."</br>";
+					echo "</div>";
+					echo "\n";
 				}
-			//URL problem
-			echo '<form action ="'.URL.'/like/createLike" method = "post" enctype="multipart/form-data"><br/>';
-			echo "<input type = \"submit\" class = \"btn btn-default\" value = \"Like\" />"."<br/>";
-			echo "</form>"."<br/>";
-			echo "</div>";
-			echo "\n";
 			}
-		}
-		?>
+			?>
 		</div>
 
