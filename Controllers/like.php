@@ -17,8 +17,9 @@ class Like extends Controller
 		}
 	}
 
-	function createLike($post_id)
+	function createLike($post_id, $owner_id)
 	{
+		//owner_id => owner of the post
 		$model = new Like_Model();
 		$x = $model->createLike(Session::get('id'), $post_id);
 		if($x == true)

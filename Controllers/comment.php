@@ -21,10 +21,11 @@ class Comment extends Controller
 		return $x;
 	}
 
-	function createComment($post_id, $comment_text) {
+	function createComment($post_id, $owner_id) {
+		// owner_id owner of post
 		$model = new Comment_Model();
 		$x = $model->createComment(Session::get('id'), 
-									$post_id, $comment_text);
+									$post_id, $_POST['comment_text']);
 		if($x == true)
 		{
 			echo 'Comment successfuly created'; 

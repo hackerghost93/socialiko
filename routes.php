@@ -48,8 +48,27 @@ $controller->LoadModel($url[0]);
 
  //validation of url if methods exist
  // add valid urls to validation
+
 if(isset($url[1]))
 {
+ 	if($url[0] == 'comment' && $url[1] == 'createComment') {
+ 		if(isset($url[2]) && isset($url[3])) {
+ 			$controller->createComment($url[2],$url[3]);
+ 			exit;
+ 		}
+ 		else {
+ 			require 'Controllers/error.php';
+			$controller = new Error(404);
+ 		}
+ 	}
+
+ 	if($url[0] == 'like' && $url[1] == 'createLike') {
+ 		if(isset($url[2]) && isset($url[3])) {
+ 			$controller->createLike($url[2],$url[3]);
+ 			exit;
+ 		}
+ 	}
+
 	if($url[0] == 'post' && $url[1] !='index')
 	{
 		if($url[1] == 'create')
@@ -86,6 +105,7 @@ if(isset($url[1]))
 		require 'Controllers/error.php';
 		$controller = new Error(404);
  	}
+
 }
 else
 	$controller->index();

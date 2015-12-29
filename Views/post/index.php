@@ -46,41 +46,54 @@
 			for ($i = 0 ; $i < count($this->posts) ;$i++) {
 				if($this->access == true && $this->posts[$i]['state'] == 'public')
 				{
-					echo '<div class="post">';
-					echo '<a href="'.URL.'/post/show/'.$this->posts[$i]['post_id'].'">';
-					echo '<h3>'.$this->posts[$i]['caption'].'</h3>';
-					echo '</a>';
+					echo '<div class="post">'."\n";
+					echo '<a href="'.URL.'/post/show/'.$this->posts[$i]['post_id'].'">'."\n";
+					echo '<h3>'.$this->posts[$i]['caption'].'</h3>'."\n";
+					echo '</a>'."\n";
 					if($this->posts[$i]['image_path'] != null)
-						echo '<img src="'.URL.'/'.$this->posts[$i]['image_path'].'"/>';
-					echo '<h2>Liked from:</h2>';
+						echo '<img src="'.URL.'/'.$this->posts[$i]['image_path'].'"/>'."\n";
+					echo '<h2>Liked from:</h2>'."\n";
 					if($this->posts[$i]['likes'] != null) {
 						for($j = 0 ; $j < count($this->posts[$i]['likes']) ; ++$j) {
 						 	echo '<h4>'.$this->posts[$i]['likes'][$j]['first_name']." ".
-										$this->posts[$i]['likes'][$j]['last_name'].'</h4>'.'</br>';
+										$this->posts[$i]['likes'][$j]['last_name'].'</h4>'.'</br>'."\n";
 						}
-					} else echo '<h4>No one.</h4>';
-					echo '<h2>Comments:</h2>';
+					} else echo '<h4>No one.</h4>'."\n";
+					echo '<h2>Comments:</h2>'."\n";
 					if($this->posts[$i]['comments']) {
 						for($j = 0 ; $j < count($this->posts[$i]['comments']) ; ++$j) {
 							echo '<h4>'.$this->posts[$i]['comments'][$j]['first_name']." ".
 							 $this->posts[$i]['comments'][$j]['last_name'].': '.
-							 $this->posts[$i]['comments'][$j]['comment_text'].'</h4>';
+							 $this->posts[$i]['comments'][$j]['comment_text'].'</h4>'
+							 ."\n";
 						}
-					} else echo '<h4>No comments on this post.</h4>';
+					} else echo '<h4>No comments on this post.</h4>'."\n";
 					echo '<form action ="'.URL;
 					//$this->view->isLiked = 
 					if($this->posts[$i]['isLiked'])
 						echo '/like/removeLike/';
 					else echo '/like/createLike/';
-					echo $this->posts[$i]['post_id'].'" method = "post"></br>';
+					echo $this->posts[$i]['post_id'];
+					if(!$this->posts[$i]['isLiked'])
+						echo '/'.$this->posts[$i]['user_id'];
+					echo '" method = "post"></br>'."\n";
 					echo "<input type = \"submit\" class = \"btn btn-default\"";
 					if($this->posts[$i]['isLiked']) 
-						echo "value = \"Unlike\" />"."</br>";
-					else echo "value = \"Like\" />"."</br>";
-					echo "</form>"."</br>";
-					echo "</div>";
-					echo "\n";
+						echo "value = \"Unlike\" />"."</br>"."\n";
+					else echo "value = \"Like\" />"."</br>"."\n";
+					echo "</form>"."</br>"."\n";
 				}
+				echo '<form class = "form-group" action="'.URL.'/comment/createComment/'.
+						$this->posts[$i]['post_id'].'/'.
+						$this->posts[$i]['user_id'];
+				echo '" method = "post">'."\n";
+				//add comment text and btn
+				echo '<textarea name="comment_text"'. 
+				 'placeholder="Write comment" rows="2" cols="70"'.
+				 ' class="form-control"></textarea>'."\n";
+				echo '<input type = "submit" class = "btn btn-default"'. 
+					'value = "Add Comment">';
+				echo "</div>"."\n";
 			}
 			?>
 		</div>
