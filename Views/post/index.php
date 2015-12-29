@@ -60,10 +60,13 @@
 					echo '<h2>Comments:</h2>'."\n";
 					if($this->posts[$i]['comments']) {
 						for($j = 0 ; $j < count($this->posts[$i]['comments']) ; ++$j) {
+							echo '<div class="comments">'."\n";
+							echo '<img src="'.URL.'/'.$this->posts[$i]['comments'][$j]['image_path'].'" class="img-circle">';
 							echo '<h4>'.$this->posts[$i]['comments'][$j]['first_name']." ".
 							 $this->posts[$i]['comments'][$j]['last_name'].': '.
 							 $this->posts[$i]['comments'][$j]['comment_text'];
 							 echo '</h4>'."\n";
+							 echo "</div>\n";
 						}
 
 					} else echo '<h4>No comments on this post.</h4>'."\n";

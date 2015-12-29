@@ -23,6 +23,7 @@ class Friend_Request extends Controller
 		$id = Session::get('id');
 		$this->view->styles = array();
 		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
+		array_push($this->view->styles, URL."/Public/bootstrap/css/request.css");
 		$this->view->requests = $this->model->getFriendRequests($id);
 		$this->view->render('request/index');
 	}

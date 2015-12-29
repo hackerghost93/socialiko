@@ -1,4 +1,6 @@
-<?php 
+<?php
+require_once 'Models/notification_model.php';
+require_once 'Controllers/notification.php'; 
 /**
 * 
 */
@@ -24,6 +26,7 @@ class Comment extends Controller
 	function createComment($post_id, $owner_id) {
 		// owner_id owner of post
 		$model = new Comment_Model();
+		$contNot = new Notification();
 		$contNot->createNotification($owner_id,
 			Session::get('id'),$post_id,"comment");
 		$x = $model->createComment(Session::get('id'), 

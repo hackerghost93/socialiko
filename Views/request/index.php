@@ -3,7 +3,7 @@
 		<div class="friend_request_btns">
 			<a href="<?=URL?>/post/index/<?=$request['user_id']?>">
 				<h3><?=$request['first_name']." ".$request['last_name']?></h3>
-				<img src="<?=URL.'/'.$request['image_path']?>">
+				<img src="<?=URL.'/'.$request['image_path']?>" class="img-circle">
 			</a>
 			<form action="<?=URL?>/friend_request/accept/<?=$request['user_id']?>"
 				method="post">

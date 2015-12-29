@@ -49,6 +49,7 @@ class Post extends Controller
 		$friendCon = new Friend();
 		$this->view->styles = array();
 		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
+		array_push($this->view->styles, URL."/Public/bootstrap/css/post.css");
 		if($id == null)
 		{
 			$this->view->me = true ;
