@@ -1,4 +1,5 @@
 <div class="notification">
+<?php if($this->notifications):?>
 <?php foreach($this->notifications as $not): ?>
 	<a href="<?=URL?>/post/show/<?=$not['post_id']?>">
 	<?php if($not['notification_type'] == "like"): ?>
@@ -8,4 +9,7 @@
 	<?php endif; ?>
 	</a>
 <?php endforeach; ?>
+<?php else:?>
+	<h1>You have no new notifications</h1>
+<?php endif;?>
 </div>
