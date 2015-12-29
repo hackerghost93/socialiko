@@ -81,17 +81,17 @@
 						echo "value = \"Unlike\" />"."</br>"."\n";
 					else echo "value = \"Like\" />"."</br>"."\n";
 					echo "</form>"."</br>"."\n";
-				echo '<form class = "form-group" action="'.URL.'/comment/createComment/'.
-						$this->posts[$i]['post_id'].'/'.
-						$this->posts[$i]['user_id'];
-				echo '" method = "post">'."\n";
-				//add comment text and btn
-				echo '<textarea name="comment_text"'. 
-				 'placeholder="Write comment" rows="2" cols="70"'.
-				 ' class="form-control"></textarea>'."\n";
-				echo '<input type = "submit" class = "btn btn-default"'. 
-					'value = "Add Comment">';
-				echo "</div>"."\n";
+					echo '<form class = "form-group" action="'.URL.'/comment/createComment/'.
+							$this->posts[$i]['post_id'].'/'.
+							$this->posts[$i]['user_id'];
+					echo '" method = "post">'."\n";
+					//add comment text and btn
+					echo '<textarea name="comment_text"'. 
+					 'placeholder="Write comment" rows="2" cols="70"'.
+					 ' class="form-control"></textarea>'."\n";
+					echo '<input type = "submit" class = "btn btn-default"'. 
+						'value = "Add Comment">';
+					echo "</div>"."\n";
 			}
 			?>
 		</div>

@@ -1,6 +1,7 @@
 <?php 
 require_once('Models/friend_model.php');
 require_once('Controllers/friend.php');
+
 /**
 * 
 */
@@ -52,10 +53,19 @@ class Friend_Request extends Controller
 	function accept($friend_id)
 	{
 		$id = Session::get('id');
+		$this->model->deleteRequest($id, $friend_id);
 		Friend::addFriend($friend_id,$id);
 		header('Location:'.URL.'/friend/getFriends');
 		die();
 	}
+
+	function ignore($friend_id) {
+		$id = Session::get('id');
+		$this->model->deleteRequest($id, $friend_id);
+		header('Location:'.URL.'/friend/getFriends');
+		die();
+	}
+
 }
 
  ?>
