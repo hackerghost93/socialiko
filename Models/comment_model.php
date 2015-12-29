@@ -14,7 +14,8 @@ class Comment_Model extends Model
 	function getComments($post_id) {
 		$query = $this->db->prepare("
 			Select u.first_name, u.last_name,
-			c.post_id, c.user_id, c.comment_text  
+			c.post_id, c.user_id, c.comment_text,
+			u.image_path  
 			from comments as c
 			join users as u on u.user_id = c.user_id
 			where c.post_id = :post_id
