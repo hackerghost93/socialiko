@@ -102,7 +102,7 @@ class Post_Model extends Model
 
 	public function getPosts($id,$state)
 	{
-		if($state = "ALL")
+		if($state == "ALL")
 		{
 			// echo "there";
 			// die();
@@ -129,13 +129,11 @@ class Post_Model extends Model
 		}
 		else
 		{
-			echo "here";
-			die();
 			$query = $this->db->prepare(
 			"select * from posts as p 
 			join users as u on p.user_id = u.user_id
 			where 
-			user_id = :id AND state = :state
+			u.user_id = :id AND state = :state
 			order by p.updated_at DESC"
 			);
 			

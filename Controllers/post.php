@@ -61,15 +61,18 @@ class Post extends Controller
 		{
 			$this->view->me = false ;
 			if($friendCon->isFriend(Session::get('id'),$id))
+			{
 				$this->view->access = true ;
+				$this->view->posts = $this->getPosts($id);
+			}
 			else
 			{
 				$this->view->access = false ;
 				$this->view->requested = $requestController->isRequested($id);
+				$this->view->posts = $this->getPosts($id,"public");
 			}
 			$this->view->id = $id ;
 			$this->view->user = $u::getUser($id);
-			$this->view->posts = $this->getPosts($id,"public");
 		} 
 		$this->view->render('post/index');
 

@@ -1,7 +1,7 @@
 
 		<div class="user-data">
 			<h1><?= $this->user[0]['first_name'].' '.$this->user[0]['last_name']?> 's profile</h1>
-			<img src="<?=$this->user[0]['image_path']?>">
+			<img src="<?=URL.'/'.$this->user[0]['image_path']?>">
 			<?php if($this->access == false):?>
 				<!-- it can be done with js -->
 					<?php if($this->requested): ?>
@@ -44,8 +44,6 @@
 		<div class="smiles">
 			<?php
 			for ($i = 0 ; $i < count($this->posts) ;$i++) {
-				if($this->access == true && $this->posts[$i]['state'] == 'public')
-				{
 					echo '<div class="post">'."\n";
 					echo '<a href="'.URL.'/post/show/'.$this->posts[$i]['post_id'].'">'."\n";
 					echo '<h3>'.$this->posts[$i]['caption'].'</h3>'."\n";
@@ -83,7 +81,6 @@
 						echo "value = \"Unlike\" />"."</br>"."\n";
 					else echo "value = \"Like\" />"."</br>"."\n";
 					echo "</form>"."</br>"."\n";
-				}
 				echo '<form class = "form-group" action="'.URL.'/comment/createComment/'.
 						$this->posts[$i]['post_id'].'/'.
 						$this->posts[$i]['user_id'];
