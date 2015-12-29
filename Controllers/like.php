@@ -24,7 +24,6 @@ class Like extends Controller
 		{
 			echo 'Like successfuly created'; 
 			header("Location:".URL."/post");
-			exit;
 		}
 		else 
 			echo 'error';
@@ -46,7 +45,14 @@ class Like extends Controller
 	function removeLike($post_id) {
 		$model = new Like_Model();
 		$x = $model->removeLike(Session::get('id'), $post_id);
-		return $x;
+		if($x == true)
+		{
+			echo 'Like successfuly created'; 
+			header("Location:".URL."/post");
+		}
+		else 
+			echo 'error';
+		exit;
 	}
 	
 }

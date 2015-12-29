@@ -80,6 +80,8 @@ class Post extends Controller
 		for($i = 0 ; $i < count($data) ; ++$i) {
 			$like_data = $like_controller->getLikes($data[$i]['post_id']);
 			$data[$i]['likes'] = $like_data;
+			$data[$i]['isLiked'] = $like_controller->
+											isLiked($data[$i]['post_id']);
 		}
 		return $data;
 	}

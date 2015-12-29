@@ -57,8 +57,16 @@
 										$this->posts[$i]['likes'][$j]['last_name'].'</h4>'."</br>";
 						}
 					} else echo '<h4>No one</h4>';
-					echo '<form action ="'.URL.'/like/createLike/'.$this->posts[$i]['post_id'].'" method = "post"></br>';
-					echo "<input type = \"submit\" class = \"btn btn-default\" value = \"Like\" />"."</br>";
+					echo '<form action ="'.URL;
+					//$this->view->isLiked = 
+					if($this->posts[$i]['isLiked'])
+						echo '/like/removeLike/';
+					else echo '/like/createLike/';
+					echo $this->posts[$i]['post_id'].'" method = "post"></br>';
+					echo "<input type = \"submit\" class = \"btn btn-default\"";
+					if($this->posts[$i]['isLiked']) 
+						echo "value = \"Unlike\" />"."</br>";
+					else echo "value = \"Like\" />"."</br>";
 					echo "</form>"."</br>";
 					echo "</div>";
 					echo "\n";

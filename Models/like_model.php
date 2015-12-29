@@ -32,14 +32,15 @@ class Like_Model extends Model
 	}
 
 	function isLiked($user_id, $post_id) {
-		$query = $this->$db->prepare("
+		$query = $this->db->prepare("
 			Select* from likes
-			where user_id = :user_id post_id = :post_id
+			where user_id = :user_id and 
+			post_id = :post_id
 		");
 
 		if($query->execute(array(
 			':post_id' => $post_id,
-			'user_id' => $user_id
+			':user_id' => $user_id
 			))) {
 			if($query->rowCount() > 0)
 				return true;
@@ -70,7 +71,7 @@ class Like_Model extends Model
 	}
 
 	function removeLike($user_id, $post_id) {
-		$query = $this->$db->prepare("
+		$query = $this->db->prepare("
 			Delete from likes
 			where user_id = :user_id
 			and post_id = :post_id
