@@ -54,9 +54,17 @@
 					if($this->posts[$i]['likes'] != null) {
 						for($j = 0 ; $j < count($this->posts[$i]['likes']) ; ++$j) {
 						 	echo '<h4>'.$this->posts[$i]['likes'][$j]['first_name']." ".
-										$this->posts[$i]['likes'][$j]['last_name'].'</h4>'."</br>";
+										$this->posts[$i]['likes'][$j]['last_name'].'</h4>'.'</br>';
 						}
-					} else echo '<h4>No one</h4>';
+					} else echo '<h4>No one.</h4>';
+					echo '<h2>Comments:</h2>';
+					if($this->posts[$i]['comments']) {
+						for($j = 0 ; $j < count($this->posts[$i]['comments']) ; ++$j) {
+							echo '<h4>'.$this->posts[$i]['comments'][$j]['first_name']." ".
+							 $this->posts[$i]['comments'][$j]['last_name'].': '.
+							 $this->posts[$i]['comments'][$j]['comment_text'].'</h4>';
+						}
+					} else echo '<h4>No comments on this post.</h4>';
 					echo '<form action ="'.URL;
 					//$this->view->isLiked = 
 					if($this->posts[$i]['isLiked'])

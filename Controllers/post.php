@@ -3,10 +3,12 @@ require_once 'Models/login_model.php';
 require_once 'Models/friend_model.php';
 require_once 'Models/friend_request_model.php';
 require_once 'Models/like_model.php';
+require_once 'Models/comment_model.php';
 require_once 'Controllers/friend_request.php';
 require_once 'Controllers/login.php';
 require_once 'Controllers/friend.php';
 require_once 'Controllers/like.php';
+require_once 'Controllers/comment.php';
 
 /**
 * 
@@ -76,12 +78,15 @@ class Post extends Controller
 	private function getPosts($id,$state="ALL")
 	{
 		$like_controller = new Like();
+		$comment_controller = new Comment();
 		$data = $this->model->getPosts($id,$state);
 		for($i = 0 ; $i < count($data) ; ++$i) {
-			$like_data = $like_controller->getLikes($data[$i]['post_id']);
-			$data[$i]['likes'] = $like_data;
+			$data[$i]['likes'] = $like_controller->
+										   getLikes($data[$i]['post_id']);
 			$data[$i]['isLiked'] = $like_controller->
 											isLiked($data[$i]['post_id']);
+			$data[$i]['comments'] = $comment_controller->
+										getComments($data[$i]['post_id']);
 		}
 		return $data;
 	}
