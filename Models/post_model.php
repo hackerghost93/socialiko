@@ -163,8 +163,14 @@ class Post_Model extends Model
 		$query->execute(array(
 			':x' => $x
 			));
-		$x = $query->fetchAll();
-		return $x ;
+		if($query->rowCount() > 0)
+		{
+			return $query->fetchAll();
+		}
+		else
+		{
+			return null ;
+		}
 	}
 }
 

@@ -102,6 +102,8 @@ class Post extends Controller
 		$users = $controllerLogin->search($x);
 		$this->view->users = $users ;
 		$this->view->posts = $posts ;
+		$this->view->styles = array();
+		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
 		$this->view->render('post/results');
 	}
 
