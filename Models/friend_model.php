@@ -84,6 +84,24 @@ class Friend_Model extends Model
 		}
 
 	}
+
+	function removeFriend($user, $friend) {
+		$query = $this->db->prepare("
+			delete from friends 
+			where user_id = :user 
+			and friend_id = :friend
+		");
+
+		if($query->execute(array(
+			':user' => $user,
+			':friend' => $friend
+			))) {
+			return true;
+		} else {
+			echo 'Error with database';
+			die();
+		}
+	}
 }
 
  ?>

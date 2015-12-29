@@ -35,7 +35,7 @@ class Friend extends Controller
 	public static function addFriend($id,$friend)
 	{
 		$mod = new Friend_Model();
-		$x = $mod->AddFriend($id,$friend);
+		$x = $mod->addFriend($id,$friend);
 		if($x)
 		{
 			header("Location:".URL."/friend/getFriends");
@@ -50,6 +50,19 @@ class Friend extends Controller
 		$model = new Friend_Model();
 		return $model->isFriend($id,$friend);
 	}
+
+	public static function removeFriend($friend) {
+		$model = new Friend_Model();
+		$id = Session::get('id');
+		$x = $model->removeFriend($id, $friend);
+		if($x) {
+			header("Location:".URL."/friend/getFriends");
+			exit;
+		}
+		echo 'something went wrong';
+		die();
+	}
+
 }
 
  ?>
