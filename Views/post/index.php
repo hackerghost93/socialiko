@@ -47,9 +47,11 @@
 				if($this->access == true && $this->posts[$i]['state'] == 'public')
 				{
 					echo '<div class="post">';
+					echo '<a href="'.URL.'/post/show/'.$this->posts[$i]['post_id'].'">';
 					echo '<h3>'.$this->posts[$i]['caption'].'</h3>';
+					echo '</a>';
 					if($this->posts[$i]['image_path'] != null)
-						echo '<img src="'.$this->posts[$i]['image_path'].'"/>';
+						echo '<img src="'.URL.'/'.$this->posts[$i]['image_path'].'"/>';
 					echo '<h2>Liked from:</h2>';
 					if($this->posts[$i]['likes'] != null) {
 						for($j = 0 ; $j < count($this->posts[$i]['likes']) ; ++$j) {

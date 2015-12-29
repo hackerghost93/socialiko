@@ -62,6 +62,14 @@ if(isset($url[1]))
 			$controller->search();
 			exit;
 		}
+		if($url[1]=='show')
+		{
+			if(isset($url[2]))
+			{
+				$controller->show($url[2]);
+				exit;
+			}
+		}
 		header('Location:'.URL.'/post/index/'.$url[1]);
 		exit ;
 	}

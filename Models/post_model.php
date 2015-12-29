@@ -90,9 +90,14 @@ class Post_Model extends Model
 		else return false ;
 	}
 
-	function delete()
+	public function show($id)
 	{
-
+		$query = $this->db->prepare("Select * from posts 
+			where post_id =  :id");
+		$query->execute(array(':id'=>$id));
+		if($query->rowCount() > 0)
+			return $query->fetchAll();
+		return null ;
 	}
 
 	public function getPosts($id,$state)

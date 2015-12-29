@@ -2,6 +2,8 @@
 /**
 * 
 */
+require_once 'Models/notification_model.php';
+require_once 'Controllers/notification.php';
 class Like extends Controller
 {
 	

@@ -101,5 +101,24 @@ class Post extends Controller
 		$this->view->posts = $posts ;
 		$this->view->render('post/results');
 	}
+
+	public function show($id)
+	{
+		$data = $this->model->show($id);
+		$like_controller = new Like();
+		$comment_controller = new Comment();
+		for($i = 0 ; $i < count($data) ; ++$i) {
+			$data[$i]['likes'] = $like_controller->
+										   getLikes($data[$i]['post_id']);
+			$data[$i]['isLiked'] = $like_controller->
+											isLiked($data[$i]['post_id']);
+			$data[$i]['comments'] = $comment_controller->
+										getComments($data[$i]['post_id']);
+		}
+		$this->view->post = $data ;
+		$this->view->styles = array();
+		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
+		$this->view->render('post/show');
+	}
 }
  ?>
