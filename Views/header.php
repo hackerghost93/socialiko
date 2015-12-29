@@ -43,6 +43,7 @@
         <li><a href="<?=URL?>/post/index">Home</a></li>
         <li><a href="<?=URL?>/friend_request/index">Friend Requests</a></li>
         <li><a href="<?=URL?>/friend/getFriends">Friends</a></li>
+        <li><a href="<?=URL?>/notification">Notifications</a></li>
         <li><a href="<?=URL?>/login/logout">Sign out</a></li>
       </ul>
     </div>

@@ -22,7 +22,7 @@ class Notification extends Controller
 		$this->view->styles = array();
 		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
 		array_push($this->view->styles, URL."/Public/bootstrap/css/notification.css");
-		$this->view->render('views/index');
+		$this->view->render('notification/index');
 	}
 
 	function createNotification($user_id,$friend_id,$post_id,$type)

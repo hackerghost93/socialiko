@@ -12,7 +12,7 @@ class View
 		if($Include == true)
 		{
 			require('Views/header.php');
-			require 'Views/'.$name.'.php';
+			require('Views/'.$name.'.php');
 			require('Views/footer.php'); 
 		}
 		else

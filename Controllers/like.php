@@ -21,6 +21,9 @@ class Like extends Controller
 	{
 		//owner_id => owner of the post
 		$model = new Like_Model();
+		$contNot = new Notification();
+		$contNot->createNotification($owner_id,
+			Session::get('id'),$post_id,"like");
 		$x = $model->createLike(Session::get('id'), $post_id);
 		if($x == true)
 		{

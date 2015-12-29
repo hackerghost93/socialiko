@@ -24,6 +24,8 @@ class Comment extends Controller
 	function createComment($post_id, $owner_id) {
 		// owner_id owner of post
 		$model = new Comment_Model();
+		$contNot->createNotification($owner_id,
+			Session::get('id'),$post_id,"comment");
 		$x = $model->createComment(Session::get('id'), 
 									$post_id, $_POST['comment_text']);
 		if($x == true)
