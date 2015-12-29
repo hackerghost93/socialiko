@@ -42,7 +42,7 @@ class Friend_Request_Model extends Model
 	function deleteRequest($id, $friend_id) {
 		$query = $this->db->prepare("
 			delete from friend_requests
-			where user_id = :id and friend_id = :friend_id
+			where user_id = :friend_id and friend_id = :id
 			");
 		if($query->execute(array(
 			':id' => $id,
