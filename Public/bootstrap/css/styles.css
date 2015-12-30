@@ -3,6 +3,7 @@ body {
     background-image: url("back.jpg");
     background-repeat: no-repeat;
     background-color: red ;*/
+    background-color :#162735;
 }
 .user-data img
 {
@@ -19,10 +20,16 @@ img{
 
 .container{
   margin-top: 50px ;
+  color: black;
+  /*462427*/
+  background-color: #545F80;
   width : 70%;
-  border : 2px solid red ;
+  /*border : 2px solid white ;*/
+  /*#35201F*/
 }
 .user-data{
+
+    background-color: #041D67;
 	  margin:20px;
     line-height: 24px;
     font-weight: bold;
