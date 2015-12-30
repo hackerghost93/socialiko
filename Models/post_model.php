@@ -154,7 +154,7 @@ class Post_Model extends Model
 	{
 		$query = $this->db->prepare("
 			Select p.post_id,p.caption,p.image_path,p.created_at,
-			u.first_name,u.image_path as path ,u.last_name
+			u.first_name,u.image_path as path ,u.last_name ,p.user_id
 			from posts as p
 			join users as u on p.user_id = u.user_id
 			where p.state='public' 
@@ -164,6 +164,7 @@ class Post_Model extends Model
 				Select f.user_id from friends as f
 				where f.user_id = :id 
 			)
+			or u.user_id = :id
 			order by p.created_at DESC
 			");
 		if($query->execute(array(':id' => $id)))

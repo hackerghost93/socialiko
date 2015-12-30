@@ -26,28 +26,28 @@ class Comment extends Controller
 	function createComment($post_id, $owner_id) {
 		// owner_id owner of post
 		$model = new Comment_Model();
-		$contNot = new Notification();
-		$contNot->createNotification($owner_id,
-			Session::get('id'),$post_id,"comment");
 		$x = $model->createComment(Session::get('id'), 
 									$post_id, $_POST['comment_text']);
 		if($x == true)
 		{
+			$contNot = new Notification();
+			$contNot->createNotification($owner_id,
+			Session::get('id'),$post_id,"comment");
 			echo 'Comment successfuly created'; 
-			header("Location:".URL."/post");
+			header("Location:".URL."/post/newsfeed");
 		}
 		else 
 			echo 'error';
 		exit;
 	}
-
+	
 	function removeComment($post_id) {
 		$model = new Comment_Model();
 		$x = $model->removeComment(Session::get('id'), $post_id);
 		if($x == true)
 		{
 			echo 'Comment successfuly removed'; 
-			header("Location:".URL."/post");
+			header("Location:".URL."/post/newsfeed");
 		}
 		else 
 			echo 'error';

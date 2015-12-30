@@ -23,7 +23,7 @@ class Notification_Model extends Model
 			on u.user_id = n.friend_id
 			where n.user_id = :id
 			group by n.notification_id
-			order by n.created_at
+			order by n.created_at DESC
 			");
 		if($query->execute(
 			array(':id' => $id)
@@ -47,6 +47,8 @@ class Notification_Model extends Model
 
 	function createNotification($id , $friend_id , $post_id , $type)
 	{
+		if($id == $friend_id)
+			return true ;
 		$query = $this->db->prepare("
 			Insert into notifications
 			(user_id,friend_id,post_id,notification_type)

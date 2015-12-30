@@ -28,7 +28,7 @@ class Like extends Controller
 		if($x == true)
 		{
 			echo 'Like successfuly created'; 
-			header("Location:".URL."/post");
+			header("Location:".URL."/post/newsfeed");
 		}
 		else 
 			echo 'error';
@@ -53,7 +53,7 @@ class Like extends Controller
 		if($x == true)
 		{
 			echo 'Like successfuly removed'; 
-			header("Location:".URL."/post");
+			header("Location:".URL."/post/newsfeed");
 		}
 		else 
 			echo 'error';

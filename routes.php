@@ -62,17 +62,6 @@ if(isset($url[1]))
  		}
  	}
 
- 	if($url[0] == 'profile') {
- 		if(isset($url[1])) {
- 			$controller->index();
- 			exit;
- 		} else {
- 			require 'Controllers/error.php';
-			$controller = new Error(404);
-			exit;
- 		}
- 	}
-
  	if($url[0] == 'like' && $url[1] == 'createLike') {
  		if(isset($url[2]) && isset($url[3])) {
  			$controller->createLike($url[2],$url[3]);

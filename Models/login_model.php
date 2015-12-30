@@ -131,11 +131,11 @@
 	 	{
 	 		if($_POST['gender'] == "male")
 	 		{
-	 			$target_file = URL."/Public/profile_pictures/male.png";
+	 			$target_file ="Public/profile_pictures/male.png";
 	 		}
 	 		else if($_POST['gender'] == "female")
 	 		{
-	 			$target_file = URL."/Public/profile_pictures/female.jpg";	
+	 			$target_file = "Public/profile_pictures/female.jpg";	
 	 		}
 	 	}
 	 	$query = $this->db->prepare("Insert into users 

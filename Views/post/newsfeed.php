@@ -24,6 +24,7 @@
 	<img src="<?=URL.'/'.$post['path']?>" class="img-circle" id="username">
 	<h3><?=$post['first_name'].' '.$post['last_name']?></h3>
 	</div>
+	<h4><?=$post['caption']?></h4>
 	<img src="<?=URL.'/'.$post['image_path']?>">
 	<?php if(!empty($post['comments'])):?>
 		<?php foreach ($post['comments'] as $comment): ?>
@@ -40,8 +41,8 @@
 	<?php else: ?>
 		<h4>No comments</h4>	
 	<?php endif;?>
-	<form action="<?=URL.'/comment/createComment/'.$post['post_id']?>">
-			<textarea rows="2" cols="70" placeholder="Write Comment" class="form-control"></textarea>
+	<form action="<?=URL.'/comment/createComment/'.$post['post_id'].'/'.$post['user_id']?>" method="post"">
+			<textarea rows="2" cols="70" placeholder="Write Comment" class="form-control" name="comment_text"></textarea>
 			<button type="submit" class="btn btn-default">Add Comment</button>
 	</form>
 	<?php if(!empty($post['likes'])):?>
@@ -54,8 +55,8 @@
 	<?php else:?>
 		<h4>No likes</h4>
 	<?php endif ;?>
-	<form action="<?=URL.'/comment/createLike/'.$post['post_id']?>">
-		<input type="submit" class="btn btn-default" value="Like">
+	<form action="<?=URL.'/like/createLike/'.$post['post_id'].'/'.$post['user_id']?>">
+		<input type="submit" class="btn btn-default" value="Like" >
 	</form>
 
 </div>
