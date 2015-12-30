@@ -12,16 +12,27 @@
 					</form>
 					<?php endif; ?>
 			<?php endif; ?>
-			<h3>HomeTown : <?= $this->user[0]['hometown']?></h3>
-			<h3>Phone : <?= $this->user[0]['phone']?></h3> 
+			<?php if(isset($this->user[0]['hometown'])): ?>
+				<h3>HomeTown : <?= $this->user[0]['hometown']?></h3>
+			<?php endif; ?>
+			<?php if(isset($this->user[0]['phone'])): ?>
+				<h3>Phone : <?= $this->user[0]['phone']?></h3> 
+			<?php endif; ?>
 			<h3>Gender : <?= $this->user[0]['gender']?></h3> 
 			<h3>Marital Status : <?= $this->user[0]['martial_status']?></h3>
 			<?php if($this->access == true): ?>
-			<h3>Birthdate : <?= $this->user[0]['birthdate'] ?></h3>
-			<h3>About me : <?= $this->user[0]['about_me'] ?> </h3>
+			<?php if(isset($this->user[0]['birthdate'])): ?>
+				<h3>Birthdate : <?= $this->user[0]['birthdate'] ?></h3>
+			<?php endif; ?>
+			<?php if(isset($this->user[0]['about_me'])): ?>
+				<h3>About me : <?= $this->user[0]['about_me'] ?> </h3>
+			<?php endif; ?>	
 			<?php endif; ?>
 		</div>
 		<?php if($this->me == true): ?>
+		<form action = "<?=URL?>/profile/index" method = "post">
+			<button type="submit" class="btn btn-default">Edit Profile</button>
+		</form>
 		<div class="form-group">
 		<form action="<?=URL?>/post/create" method="post" enctype="multipart/form-data" >
 			<h1>
