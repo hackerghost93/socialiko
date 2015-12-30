@@ -1,7 +1,20 @@
 
 		<div class="user-data">
+			<div class="profilepic">
+				<img src="<?=URL.'/'.$this->user[0]['image_path']?>">
+				<?php if($this->me == true):?>
+					<form action="<?=URL.'/login/editProfilePic'?>" method="post" 
+					enctype="multipart/form-data" class="form-group" class="form-control">
+						<input type="file" name="profile_picture">
+						<input type="submit" name="submit" value="Change Profile Picture" 
+						class="form-control">
+					</form>
+					<form action="<?=URL.'/login/removeProfilePic'?>" method="post" class="form-group">
+						<input type="submit" value="Remove Profile Picture" class="form-control">
+					</form>
+				<?php endif;?>
+			</div>
 			<h1><?= $this->user[0]['first_name'].' '.$this->user[0]['last_name']?> 's profile</h1>
-			<img src="<?=URL.'/'.$this->user[0]['image_path']?>">
 			<?php if($this->access == false):?>
 				<!-- it can be done with js -->
 					<?php if($this->requested): ?>

@@ -50,7 +50,7 @@ class Post extends Controller
 		$this->view->styles = array();
 		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
 		array_push($this->view->styles, URL."/Public/bootstrap/css/post.css");
-		if($id == null)
+		if($id == null || $id == Session::get('id'))
 		{
 			$this->view->me = true ;
 			$this->view->id = Session::get('id');

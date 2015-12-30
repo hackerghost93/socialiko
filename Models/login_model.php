@@ -263,6 +263,144 @@
 	 		die();
 	 	}
 	 }
+
+	 public function editProfilePic($id)
+	 {
+	 		$query = $this->db->prepare("select * from users
+	 			where user_id=:id ;
+	 			");
+	 		if($query->execute(array(':id'=>$id)))
+	 		{
+	 			if($query->rowCount() > 0)
+		 			$user = $query->fetch(PDO::FETCH_ASSOC);
+		 		else 
+		 		{
+		 			echo 'error';
+		 			die();
+		 		}
+	 		}
+			if(
+			isset($_FILES['profile_picture'])
+			&&
+			is_uploaded_file($_FILES['profile_picture']['tmp_name'])
+			)
+			{
+				$temp = explode('.', $_FILES['profile_picture']['name']);
+				$imageFileType = end($temp);
+				$target_name ='image_' . date('Y-m-d-H-i-s') . '_' . uniqid().".".$imageFileType;
+				if(file_exists("Public/profile_pictures/".$target_name)) {
+	    			chmod("Public/profile_pictures/".$target_name,0755); //Change the file permissions if allowed
+	 		    	unlink("Public/profile_pictures/".$target_name); //remove the file
+	 		    }
+	 		    $target_dir = "Public/profile_pictures/";
+	 		    $target_file = $target_dir.$target_name;
+	 		    $uploadok = 1 ;
+	 		    $check = getimagesize($_FILES["profile_picture"]["tmp_name"]);
+	 		    if($check !== false)
+	 		    {
+	 		    	$uploadok = 1;
+	 		    }
+	 		    else
+	 		    {
+	 		    	echo "File is not an image\n";
+	 		    	$uploadok = 0 ;
+	 		    }
+	 		    if ($_FILES["profile_picture"]["size"] > 500000) {
+	 		    	echo "Sorry, your file is too large.";
+	 		    	$uploadok = 0 ;
+	 		    }
+	 		    if($check !==  false)
+	 		    {
+	 		    	$uploadok = 1;
+	 		    }
+	 		    if($imageFileType != "jpg" && $imageFileType != "png" 
+	 		    	&& $imageFileType != "jpeg"
+	 		    	&& $imageFileType != "gif" ) {
+	 		    	echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+	 		    $uploadok = 0;
+	 		}
+	 		if($uploadok == 0)
+	 		{
+	 			echo "sorry upload failed";
+	 		}		
+	 		if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $target_file)) {
+	 			echo "Upload Complete\n";
+	 		}
+	 		else 
+	 		{
+	 			echo 'something went wrong';
+	 		}
+
+	 	}
+	 	else
+	 	{
+	 		if($user['gender'] == "male")
+	 		{
+	 			$target_file ="Public/profile_pictures/male.png";
+	 		}
+	 		else if($user['gender'] == "female")
+	 		{
+	 			$target_file = "Public/profile_pictures/female.jpg";	
+	 		}
+	 	}
+
+	 	$query = $this->db->prepare("
+	 		Update users 
+	 		set image_path=:path
+	 		where user_id=:id
+	 		");
+	 	if($query->execute(array(':id'=>$id,
+	 		':path'=>$target_file)))
+	 	{
+	 		return true ;
+	 	}
+	 	else
+	 	{
+	 		echo 'something went wrong';
+	 		die();
+	 	}
+ 	
+	 }
+
+	 public function removeProfilePic($id)
+	 {
+	 		$query = $this->db->prepare("select * from users
+	 			where user_id=:id ;
+	 			");
+	 		if($query->execute(array(':id'=>$id)))
+	 		{
+	 			if($query->rowCount() > 0)
+		 			$user = $query->fetch(PDO::FETCH_ASSOC);
+		 		else 
+		 		{
+		 			echo 'error';
+		 			die();
+		 		}
+	 		}
+	 		if($user['gender'] == "male")
+	 		{
+	 			$target_file ="Public/profile_pictures/male.png";
+	 		}
+	 		else if($user['gender'] == "female")
+	 		{
+	 			$target_file = "Public/profile_pictures/female.jpg";	
+	 		}
+	 		$query = $this->db->prepare("
+	 		Update users 
+	 		set image_path=:path
+	 		where user_id=:id
+	 		");
+	 	if($query->execute(array(':id'=>$id,
+	 		':path'=>$target_file)))
+	 	{
+	 		return true ;
+	 	}
+	 		else
+	 		{
+	 		echo 'something went wrong';
+	 		die();
+	 	}
+	 }
 	
 	}
 

@@ -7,8 +7,7 @@ body {
 }
 .user-data img
 {
-	width : 200px !important;
-	float : right ;
+	width : 250px !important;
 	padding : 10px;
 }
 img:hover {

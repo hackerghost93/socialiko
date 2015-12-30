@@ -22,3 +22,11 @@
 .user-data{
 	height : 350px;
 }
+.profilepic{
+	padding-bottom:30px;
+	float : right ;
+	width : 300px;
+}
+.profilepic img{
+	float:right;
+}

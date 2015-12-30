@@ -94,6 +94,18 @@ class Login extends Controller
 		} else echo 'error in profile edit';
 	}
 
+	public function editProfilePic()
+	{
+		$this->model->editProfilePic(Session::get('id'));
+		header("Location:".URL."/post/index");
+	}
+
+	public function removeProfilePic()
+	{
+		$this->model->removeProfilePic(Session::get('id')); 	
+		header("Location:".URL."/post/index");
+	}
+
 }
 
 
