@@ -2,3 +2,19 @@
 	height : 50px;
 	width : 50px;
 }
+.smalluser{
+	display: inline !important ;
+}
+#username{
+	height :50px;
+	width : 50px;
+}
+.post
+{
+	border :1px solid black;
+	padding : 20px auto;
+	margin :auto ;
+}
+.img-circle{
+	display :inline !important;
+}

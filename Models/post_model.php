@@ -171,13 +171,14 @@ class Post_Model extends Model
 			if($query->rowCount() > 0)
 			{
 				$posts = $query->fetchAll();
-				for($i = 0 ; i < count($posts) ; ++$i) {
+				for($i = 0 ; $i < count($posts) ; ++$i) {
 					$query2 = $this->db->prepare("
 						select* from likes
+						join users on users.user_id = likes.user_id
 						where post_id = :pid
 					");
 					if($query2->execute(array(
-						'pid' => $posts[$i]))) {
+						'pid' => $posts[$i]['post_id']))) {
 						$posts[$i]['likes'] = $query2->fetchAll();
 					} else {
 						echo 'something went wrong';
@@ -186,10 +187,11 @@ class Post_Model extends Model
 
 					$query2 = $this->db->prepare("
 						select* from comments
+						join users on users.user_id = comments.user_id
 						where post_id = :pid
 					");
 					if($query2->execute(array(
-						'pid' => $posts[$i]))) {
+						'pid' => $posts[$i]['post_id']))) {
 						$posts[$i]['comments'] = $query2->fetchAll();
 					} else {
 						echo 'something went wrong';
