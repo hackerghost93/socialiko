@@ -241,24 +241,25 @@
 			birthdate = :birthdate,
 			hometown = :hometown,
 			martial_status = :status,
-			aboutme = :aboutme".
-			($_POST['password'] ?
-			(", password=".md5($_POST['password'])) : "")
-			." where user_id = :id
+			about_me = :aboutme
+			where user_id = :id
 	 	");
 
 	 	if($query->execute(array(
 	 		':first_name' => $_POST['firstname'],
 	 		':last_name' => $_POST['lastname'],
 	 		':email' => $_POST['email'],
-	 		':phone' => $_POST['phone'],
-	 		':birthdate' => $_POST['birthday'],
-	 		':hometown' => $_POST['hometown'],
+	 		':phone' => (empty($_POST['phone']) ? $_POST['phone'] : NULL),
+	 		':birthdate' => (empty($_POST['birthdate']) ? $_POST['birthdate'] : NULL),
+	 		':hometown' => (empty($_POST['hometown']) ? $_POST['hometown'] : NULL),
 	 		':status' => $_POST['status'],
-	 		':aboutme' => $_POST['aboutme'],
+	 		':aboutme' => (empty($_POST['aboutme']) ? $_POST['aboutme'] : NULL),
 	 		':id' => $id
-	 		))) return true;
-	 	else {
+	 		))) {
+	 		echo 'here';
+			die();
+	 		return true;
+	 	} else {
 	 		echo 'something went wrong';
 	 		die();
 	 	}

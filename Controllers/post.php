@@ -131,6 +131,11 @@ class Post extends Controller
 	public function newsFeed()
 	{
 		$data = $this->model->newsFeed(Session::get('id'));
+		$like_controller = new Like();
+		for($i = 0 ; $i < count($data) ; ++$i) {
+			$data[$i]['isLiked'] = $like_controller->
+									isLiked($data[$i]['post_id']);
+		}
 		$this->view->posts = $data ;
 		$this->view->styles = array();
 		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");

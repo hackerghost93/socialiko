@@ -17,7 +17,9 @@ class Login extends Controller
 	}
 
 	function edit() {
-		$this->view->render('login/edit_profile', 0);
+		$this->view->styles = array();
+		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
+		$this->view->render('login/edit_profile', 1);
 	}
 
 	public function run()
