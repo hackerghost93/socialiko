@@ -32,7 +32,9 @@
 				<h3>Phone : <?= $this->user[0]['phone']?></h3> 
 			<?php endif; ?>
 			<h3>Gender : <?= $this->user[0]['gender']?></h3> 
+			<?php if(isset($this->user[0]['martial_status'])): ?>
 			<h3>Marital Status : <?= $this->user[0]['martial_status']?></h3>
+			<?php endif; ?>
 			<?php if($this->access == true): ?>
 			<?php if(isset($this->user[0]['birthdate'])): ?>
 				<h3>Birthdate : <?= $this->user[0]['birthdate'] ?></h3>

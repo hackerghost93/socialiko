@@ -5,6 +5,11 @@
 .smalluser{
 	display: inline !important ;
 }
+
+.smalluser img {
+	width: 50px;
+}
+
 #username{
 	height :50px;
 	width : 50px;

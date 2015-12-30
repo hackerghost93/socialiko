@@ -2,6 +2,7 @@
 /**
 * 
 */
+
 class Login extends Controller
 {
 	
@@ -103,6 +104,10 @@ class Login extends Controller
 	public function editProfilePic()
 	{
 		$this->model->editProfilePic(Session::get('id'));
+		/* need to require /Controllers/post.php
+		$post_controller = new Post();
+		$post_controller->create_profile_picture_post();
+		*/
 		header("Location:".URL."/post/index");
 	}
 

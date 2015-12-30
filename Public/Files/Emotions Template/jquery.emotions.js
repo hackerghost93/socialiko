@@ -39,6 +39,7 @@
                 ">:(": "grumpy",
                 ":(": "frown",
                 "8)": "glasses",
+                ":P": "tongue",
                 ":p": "tongue",
                 ":)": "smile",
                 "=)": "smile",

@@ -57,11 +57,17 @@
 	<?php else:?>
 		<h4>No likes</h4>
 	<?php endif ;?>
+	<?php if($post['isLiked']): ?>
+	<form action="<?=URL.
+	'/like/removeLike/'.$post['post_id'].'/'.$post['user_id']?>">
+		<input type="submit" class="btn btn-default" value="Unlike" >
+	</form>
+	<?php else:?>
 	<form action="<?=URL.
 	'/like/createLike/'.$post['post_id'].'/'.$post['user_id']?>">
 		<input type="submit" class="btn btn-default" value="Like" >
 	</form>
-
+	<?php endif;?>
 </div></div>
 <?php endforeach; ?>
 <?php endif; ?>

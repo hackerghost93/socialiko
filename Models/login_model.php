@@ -149,12 +149,13 @@
 	 		,:status,:aboutme,:image_path,:created_at,:updated_at)
 	 	");
 
+
 	 	if($query->execute(array(
 	 		':firstname' => $_POST['firstname'],
 	 		':lastname' => $_POST['lastname'],
 	 		':email' => $_POST['email'],
 	 		':password' => $_POST['password'],
-	 		':phone' => ($_POST['phone'] ? $_POST['phone'] : NULL),
+	 		':phone' => $_POST['phone'] == "" || $_POST['phone'] == NULL ? NULL : $_POST['phone'],
 	 		':gender' =>$_POST['gender'],
 	 		':birthdate' => ($_POST['birthday'] ? $_POST['birthday'] : NULL),
 	 		':hometown' => ($_POST['hometown'] ? $_POST['hometown'] : NULL),
@@ -168,7 +169,6 @@
 	 		return $this->db->lastInsertId();
 	 	else 
 	 		return 0 ;
-
 	 }
 
 	 public function getUser($id)
@@ -288,7 +288,7 @@
 	 		':phone' => (!empty($_POST['phone']) ? $_POST['phone'] : NULL),
 	 		':birthdate' => (!empty($_POST['birthdate']) ? $_POST['birthdate'] : NULL),
 	 		':hometown' => (!empty($_POST['hometown']) ? $_POST['hometown'] : NULL),
-	 		':status' => $_POST['status'],
+	 		':status' => (!empty($_POST['status'])) ? $_POST['status']: NULL,
 	 		':aboutme' => (!empty($_POST['aboutme']) ? $_POST['aboutme'] : NULL),
 	 		':id' => $id,
 	 		)))
@@ -387,7 +387,7 @@
 	 	if($query->execute(array(':id'=>$id,
 	 		':path'=>$target_file)))
 	 	{
-	 		return true ;
+	 		return true;
 	 	}
 	 	else
 	 	{

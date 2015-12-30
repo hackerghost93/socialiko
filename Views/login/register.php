@@ -72,7 +72,7 @@
 
       <label class = "Marital">Status : </label>
       <label class = "Single">Single</label>
-      	<input type="radio" name="status" value="single" checked="checked"/>
+      	<input type="radio" name="status" value="single"/>
       <label>Engaged</label>
       	<input type="radio" name="status" value="engaged" />
       <label> Married</label>
@@ -83,7 +83,7 @@
         <br/>
 
         <label>Profile Picture</label>
-        <input type="file" name="profile_picture"><br>
+        <input type="file" id = "profile_picture" name="profile_picture"><br>
 
 
       <label class = "aboutme">About yourself :</label><br><br>

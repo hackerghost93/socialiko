@@ -4,10 +4,11 @@ function validate() {
 	var email = document.getElementById("email").value;
 	var password = document.getElementById("password").value;
 	var password2 = document.getElementById("password2").value;
-	
+	var phone = document.getElementById("phone").value;
 
 	var birthday = document.getElementById("birthday").value;
 	var print = "";
+
 
 	var ret = true;
 
@@ -42,6 +43,16 @@ function validate() {
 		print += '-invalid birthday\n\n';
 		ret = false;
 	}
+
+	if(!isEmpty(phone) && isNaN(phone)) {
+		print += '-invalid phone number\n\n';
+		ret = false;
+	}
+	var pic_path = document.getElementById("profile_picture").value;
+	if(!isEmpty(pic_path) && !is_picture(pic_path)) {
+		print += '-invalid profile picture\n\n';
+		ret = false;
+	}
 	
 	if(!ret) 
 		alert(print);
@@ -67,4 +78,12 @@ function birthday_is_valid(x) {
 	if(arr[0] == year && arr[1] == month)
 		return arr[2] <= day;
 	return false;
+}
+
+function is_picture(x) {
+	var arr = x.split(".");
+	return arr[arr.length-1].toLowerCase() == 'jpg' ||
+		arr[arr.length-1].toLowerCase()  == 'png' ||
+		arr[arr.length-1].toLowerCase()  == 'jpeg' ||
+		arr[arr.length-1].toLowerCase()  == 'gif';
 }

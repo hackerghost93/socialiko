@@ -26,6 +26,21 @@ class Post extends Controller
 		}
 	}
 
+	function create_profile_picture_post() {
+		// need to require post model
+		$model = new Post_Model();
+		$x = $model->create(Session::get('id'));
+		if($x == true)
+		{
+			echo 'successfuly created'; 
+			header("Location:".URL."/post");
+			exit;
+		}
+		else 
+			echo 'error';
+		exit;
+	}
+
 	function create()
 	{
 		$x = $this->model->create(Session::get('id'));
