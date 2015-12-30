@@ -57,8 +57,9 @@ class Login extends Controller
 	{
 		$model = new Login_Model();
 		if($model->email_exists()) {
-			echo 'email already exists';
-			die();
+			echo '<h1>email already exists</h1>';
+			$this->view->render('login/register',0);
+			exit;
 		}
 
 		$id = $this->model->sign_up();
@@ -91,8 +92,13 @@ class Login extends Controller
 	public function update() {
 		$model = new Login_Model();
 		if($model->on_update_email_check()) {
-			echo 'email already exists';
-			die();
+			$this->view->styles = array();
+			array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
+			array_push($this->view->styles, URL."/Public/bootstrap/css/post.css");
+			echo '</br></br></br><h1>email already exists</h1>';
+			$this->view->user = $this->getUser(Session::get('id'));
+			$this->view->render('login/edit_profile',1);
+			exit;
 		}
 		$x = $model->update();
 		if($x) {
