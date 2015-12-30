@@ -30,7 +30,7 @@
 			<?php endif; ?>
 		</div>
 		<?php if($this->me == true): ?>
-		<form action = "<?=URL?>/profile/index" method = "post">
+		<form action = "<?=URL?>/login/edit" method = "post">
 			<button type="submit" class="btn btn-default">Edit Profile</button>
 		</form>
 		<div class="form-group">

@@ -15,6 +15,11 @@ class Login extends Controller
 		//name of folder and file
 		$this->view->render('login/login',0);
 	}
+
+	function edit() {
+		$this->view->render('login/edit_profile', 0);
+	}
+
 	public function run()
 	{
 		// see login data in the users model
@@ -44,13 +49,19 @@ class Login extends Controller
 	}
 	public function register()
 	{
+		$model = new Login_Model();
+		if($model->email_exists()) {
+			echo 'email already exists';
+			die();
+		}
+
 		$id = $this->model->sign_up();
 		if($id > 0)
 		{
 			Session::init();
 			Session::set('id',$id);
 			echo Session::get('id');
-			echo 'sussecful registration';
+			echo 'successful registration';
 			header("Location:http://localhost/socialiko/post");
 		}
 		else
@@ -69,6 +80,18 @@ class Login extends Controller
 		$x = $_GET['val'];
 		$data =$model->search($x);
 		return $data ;
+	}
+
+	public function update() {
+		$model = new Login_Model();
+		if($model->email_exists()) {
+			echo 'email already exists';
+			die();
+		}
+		$x = $model->update();
+		if($x) {
+			$this->view->render('post/index');
+		} else echo 'error in profile edit';
 	}
 
 }
