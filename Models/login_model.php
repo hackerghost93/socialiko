@@ -203,6 +203,8 @@
 	 			from users where user_id != :id
 	 		having concat_ws(' ', first_name, last_name) 
 	 		like Concat('%',:x,'%'))
+	 		order by users.first_name, users.last_name,
+	 				users.user_id
 	 		");
 	 	if($query->execute(array(
 	 		':x' => $x,

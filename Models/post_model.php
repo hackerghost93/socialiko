@@ -220,6 +220,7 @@ class Post_Model extends Model
 			where 
 			caption like Concat('%',:x,'%')
 			and state='public'
+			order by posts.created_at DESC
 			");
 		$query->execute(array(
 			':x' => $x
