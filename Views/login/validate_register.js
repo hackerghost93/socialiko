@@ -4,39 +4,33 @@ function validate() {
 	var email = document.getElementById("email").value;
 	var password = document.getElementById("password").value;
 	var password2 = document.getElementById("password2").value;
-	var hometown = document.getElementById("hometown").value;
-	var phone = document.getElementById("phone").value;
-	var birthday = document.getElementById("birthday").value;
+	
 
+	var birthday = document.getElementById("birthday").value;
 	var print = "";
 
 	var ret = true;
 
 	var c1 = isEmpty(firstname), c2 = isEmpty(lastname), c3 = isEmpty(email)
-	c4 = isEmpty(password), c5 = isEmpty(password2), c6 = isEmpty(hometown)
-	c7 = isEmpty(phone), c8 = isEmpty(birthday);
-	if(c1 || c2 || c3 || c4 || c5 || c6 || c7 || c8) {
+	c4 = isEmpty(password), c5 = isEmpty(password2), c8 = isEmpty(birthday);
+	if(c1 || c2 || c3 || c4 || c5) {
 		print += '-required to be filled:\n   ' + (c1 ? 'First name\n' : '')
 							+ (c2 ? '   Last name\n' : '')
 							+  (c3 ? '   Email\n' : '')
 							+ ((c4 || c5) ? '   Password\n' : '')
-							+ ((c6) ? '   Hometown\n' : '')
-							+ ((c7) ? '   Phone number\n' : '')
-							+ ((c8) ? '   Birthday\n' : '')
 							+ '\n\n';
 		ret = false;
 	}
 
-	if(password != password2) {
-		print += '-mismatch in password fields\n\n';
-		ret = false;
-		c4 = false;
-	}
-
-
-	if(!c4 && password.length < 8) {
-		print += '-password must have 8 Characters minimum\n\n';
-		ret = false;
+	if(!c4) {
+		if(password != password2) {
+			print += '-mismatch in password fields\n\n';
+			ret = false;
+			c4 = false;
+		} else if(password.length < 8) {
+			print += '-password must have 8 Characters minimum\n\n';
+			ret = false;
+		}
 	}
 
 	if(!c4 && !email_is_valid(email)) {
@@ -48,7 +42,7 @@ function validate() {
 		print += '-invalid birthday\n\n';
 		ret = false;
 	}
-
+	
 	if(!ret) 
 		alert(print);
 	return ret;

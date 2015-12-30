@@ -149,21 +149,20 @@
 	 		,:status,:aboutme,:image_path,:created_at,:updated_at)
 	 	");
 
-
 	 	if($query->execute(array(
 	 		':firstname' => $_POST['firstname'],
 	 		':lastname' => $_POST['lastname'],
 	 		':email' => $_POST['email'],
 	 		':password' => $_POST['password'],
-	 		':phone' => $_POST['phone'],
+	 		':phone' => ($_POST['phone'] ? $_POST['phone'] : NULL),
 	 		':gender' =>$_POST['gender'],
-	 		':birthdate' => $_POST['birthday'],
-	 		':hometown' => $_POST['hometown'],
+	 		':birthdate' => ($_POST['birthday'] ? $_POST['birthday'] : NULL),
+	 		':hometown' => ($_POST['hometown'] ? $_POST['hometown'] : NULL),
 	 		':status' => $_POST['status'],
-	 		':aboutme' => $_POST['aboutme'],
+	 		':aboutme' => ($_POST['aboutme'] ? $_POST['aboutme'] : NULL),
 	 		':created_at' => NULL ,
 	 		':updated_at' => NULL ,
-	 		':image_path' => $target_file ,
+	 		':image_path' => $target_file
 	 		))
 	 		)
 	 		return $this->db->lastInsertId();
