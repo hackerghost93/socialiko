@@ -1,3 +1,22 @@
+<div class="form-group">
+	<form action="<?=URL?>/post/create" method="post" enctype="multipart/form-data" >
+		<h1>
+			New Post
+		</h1>
+		<hr/>
+		<textarea name="caption" placeholder="Write post" rows="7" cols="70" class="form-control"></textarea>
+		<br />
+		<label for="post_picture">Insert Image</label>
+	    <input type="file" id="exampleInputFile" name="post_picture">
+		<div class="radio">
+			<label><input type="radio" value="private" name="state" />private</label>	
+			<label><input type="radio" value="public" name="state" checked="checked" />public</label>
+		</div>
+		<br/>
+		<button type="submit" class="btn btn-default">Add Post</button>
+	</form>
+</div>
+
 <?php if($this->posts != null):?>
 <?php foreach ($this->posts as $post): ?>
 <div class="post"> 
