@@ -89,6 +89,11 @@ if(isset($url[1]))
 				exit;
 			}
 		}
+		if($url[1]=="newsfeed")
+		{
+			$controller->newsFeed();
+			exit;
+		}
 		header('Location:'.URL.'/post/index/'.$url[1]);
 		exit ;
 	}

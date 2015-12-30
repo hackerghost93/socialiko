@@ -150,6 +150,39 @@ class Post_Model extends Model
 		return null ;
 	}
 
+	public function newsFeed($id)
+	{
+		$query = $this->db->prepare("
+			Select p.post_id,p.caption,p.image_path,p.created_at,
+			u.first_name,u.image_path as path ,u.last_name
+			from posts as p
+			join users as u on p.user_id = u.user_id
+			where p.state='public' 
+			or
+			p.user_id in 
+			(
+				Select f.user_id from friends as f
+				where f.user_id = :id 
+			)
+			order by p.created_at DESC
+			");
+		if($query->execute(array(':id' => $id)))
+		{
+			if($query->rowCount() > 0)
+			{
+				$posts = $query->fetchAll();
+				
+			}
+			else 
+				return null ;
+		}
+		else 
+		{
+			echo 'something went wrong';
+			die();
+		}
+	}
+
 	public function search($x)
 	{
 		$query = $this->db->prepare(

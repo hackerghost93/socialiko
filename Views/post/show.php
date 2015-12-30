@@ -5,7 +5,12 @@
 	<h3>Comments</h3>
 	<?php if($this->post[0]['comments'] != null):?>
 		<?php foreach($this->post[0]['comments'] as $comment):?>
-			<div class="comment"><h4><?= $comment ?> </h4></div>
+			<div class="comment">
+			<img src="<?=$comment['image_path']?>" class="img-circle">
+			<h4>
+				<?= $comment['comment_text'] ?> 
+			</h4>
+			</div>
 		<?php endforeach ; ?>
 	<?php else: ?>
 		<h4>No Commets</h4>

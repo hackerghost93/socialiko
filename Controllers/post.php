@@ -124,7 +124,18 @@ class Post extends Controller
 		$this->view->post = $data ;
 		$this->view->styles = array();
 		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
+		array_push($this->view->styles, URL."/Public/bootstrap/css/post.css");
 		$this->view->render('post/show');
+	}
+
+	public function newsFeed()
+	{
+		$data = $this->model->newsFeed(Session::get('id'));
+		$this->view->posts = $data ;
+		$this->view->styles = array();
+		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
+		array_push($this->view->styles, URL."/Public/bootstrap/css/post.css");
+		$this->view->render('post/newsfeed');
 	}
 }
  ?>
