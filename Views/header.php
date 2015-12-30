@@ -10,6 +10,11 @@
         <link rel="stylesheet" type="text/css" href="<?=$style?>">
     <?php endforeach; ?>
   <?php endif; ?>
+  <?php if(isset($this->jss)): ?>
+    <?php foreach ($this->jss as $js): ?>
+        <script src="<?=$js?>"></script>
+    <?php endforeach; ?>
+  <?php endif; ?>
   <script src="<?=URL?>/Public/bootstrap/js/smiles.js"></script>
   <script src="<?=URL?>/Public/Files/Emotions Template/jquery.emotions.js"></script>
 </head>

@@ -19,6 +19,9 @@ class Login extends Controller
 	function edit() {
 		$this->view->styles = array();
 		array_push($this->view->styles, URL."/Public/bootstrap/css/styles.css");
+		$this->view->jss = array();
+		array_push($this->view->jss, URL."/Public/bootstrap/js/validate_edit.js");
+		$this->view->user = $this->getUser(Session::get('id'));
 		$this->view->render('login/edit_profile', 1);
 	}
 
@@ -86,13 +89,14 @@ class Login extends Controller
 
 	public function update() {
 		$model = new Login_Model();
-		if($model->email_exists()) {
+		if($model->on_update_email_check()) {
 			echo 'email already exists';
 			die();
 		}
 		$x = $model->update();
 		if($x) {
-			$this->view->render('post/index');
+			header('Location: '.URL.'/post/index');
+			exit;
 		} else echo 'error in profile edit';
 	}
 

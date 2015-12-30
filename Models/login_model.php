@@ -230,7 +230,43 @@
 	 	}
 	 }
 
+	 public function on_update_email_check() {
+	 	$email = $_POST['email'];
+	 	$id = Session::get('id');
+	 	$query = $this->db->prepare("
+	 		select email from users
+	 		where email = :email and 
+	 				user_id != :id
+	 	");
+	 	if($query->execute(array(':email' => $email,
+	 		':id' => $id)))
+	 		return $query->rowCount() > 0;
+	 	else {
+	 		echo 'something went wrong';
+	 		die();
+	 	}
+	 }
+
+	 public function updatePassword() {
+	 	$id = Session::get('id');
+	 	$password = md5($_POST['password']);
+	 	$query = $this->db->prepare("
+	 		update users set
+	 		password = :password
+	 		where user_id = :id
+	 	");
+	 	if($query->execute(array(':password' => $password,
+	 		':id' => $id)))
+	 		return true;
+	 	return false;
+	 }
+
 	 public function update() {
+	 	if(!empty($_POST['password'] && !$this->updatePassword())) {
+	 		echo 'something went wrong';
+	 		die();
+	 	}
+
 	 	$id = Session::get('id');
 	 	$query = $this->db->prepare("
 			update users set
@@ -249,17 +285,15 @@
 	 		':first_name' => $_POST['firstname'],
 	 		':last_name' => $_POST['lastname'],
 	 		':email' => $_POST['email'],
-	 		':phone' => (empty($_POST['phone']) ? $_POST['phone'] : NULL),
-	 		':birthdate' => (empty($_POST['birthdate']) ? $_POST['birthdate'] : NULL),
-	 		':hometown' => (empty($_POST['hometown']) ? $_POST['hometown'] : NULL),
+	 		':phone' => (!empty($_POST['phone']) ? $_POST['phone'] : NULL),
+	 		':birthdate' => (!empty($_POST['birthdate']) ? $_POST['birthdate'] : NULL),
+	 		':hometown' => (!empty($_POST['hometown']) ? $_POST['hometown'] : NULL),
 	 		':status' => $_POST['status'],
-	 		':aboutme' => (empty($_POST['aboutme']) ? $_POST['aboutme'] : NULL),
-	 		':id' => $id
-	 		))) {
-	 		echo 'here';
-			die();
+	 		':aboutme' => (!empty($_POST['aboutme']) ? $_POST['aboutme'] : NULL),
+	 		':id' => $id,
+	 		)))
 	 		return true;
-	 	} else {
+	 	else {
 	 		echo 'something went wrong';
 	 		die();
 	 	}

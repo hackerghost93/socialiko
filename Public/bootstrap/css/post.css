@@ -20,6 +20,7 @@
 }
 
 .user-data{
+	min-height: 380px;
 }
 .profilepic{
 	padding-bottom:30px;

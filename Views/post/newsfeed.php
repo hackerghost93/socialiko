@@ -57,7 +57,8 @@
 	<?php else:?>
 		<h4>No likes</h4>
 	<?php endif ;?>
-	<form action="<?=URL.'/like/createLike/'.$post['post_id'].'/'.$post['user_id']?>">
+	<form action="<?=URL.
+	'/like/createLike/'.$post['post_id'].'/'.$post['user_id']?>">
 		<input type="submit" class="btn btn-default" value="Like" >
 	</form>
 

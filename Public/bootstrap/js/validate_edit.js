@@ -1,4 +1,4 @@
-function validate() {
+function validate_this_form() {
 	var firstname = document.getElementById("firstname").value;
 	var lastname = document.getElementById("lastname").value;
 	var email = document.getElementById("email").value;
@@ -12,12 +12,11 @@ function validate() {
 	var ret = true;
 
 	var c1 = isEmpty(firstname), c2 = isEmpty(lastname), c3 = isEmpty(email)
-	c4 = isEmpty(password), c5 = isEmpty(password2), c8 = isEmpty(birthday);
-	if(c1 || c2 || c3 || c4 || c5) {
+	c4 = isEmpty(password),c8 = isEmpty(birthday);
+	if(c1 || c2 || c3) {
 		print += '-required to be filled:\n   ' + (c1 ? 'First name\n' : '')
 							+ (c2 ? '   Last name\n' : '')
 							+  (c3 ? '   Email\n' : '')
-							+ ((c4 || c5) ? '   Password\n' : '')
 							+ '\n\n';
 		ret = false;
 	}
