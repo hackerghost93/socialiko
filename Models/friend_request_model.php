@@ -11,6 +11,18 @@ class Friend_Request_Model extends Model
 		parent::__construct();
 	}
 
+	function getFriendRequestsCount($id) {
+		$query = $this->db->prepare("
+			select count(*) cnt
+			from friend_requests
+			where friend_id = :id
+		");
+
+		if($query->execute(array(':id'=>$id)))
+			return $query->fetchAll();
+		echo 'something went wrong';
+	}
+
 	function getFriendRequests($id)
 	{
 		$query = $this->db->prepare("

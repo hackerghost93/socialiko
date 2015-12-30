@@ -47,9 +47,25 @@
 					echo '<div class="post">'."\n";
 					echo '<a href="'.URL.'/post/show/'.$this->posts[$i]['post_id'].'">'."\n";
 					echo '<h3>'.$this->posts[$i]['caption'].'</h3>'."\n";
+					echo '<h5>'.'Created at: '.$this->posts[$i]['created_at'].
+													'</h5>'."\n";
 					echo '</a>'."\n";
 					if($this->posts[$i]['image_path'] != null)
 						echo '<img src="'.URL.'/'.$this->posts[$i]['image_path'].'"/>'."\n";
+					echo '<form action ="'.URL;
+					//$this->view->isLiked = 
+					if($this->posts[$i]['isLiked'])
+						echo '/like/removeLike/';
+					else echo '/like/createLike/';
+					echo $this->posts[$i]['post_id'];
+					if(!$this->posts[$i]['isLiked'])
+						echo '/'.$this->posts[$i]['user_id'];
+					echo '" method = "post"></br>'."\n";
+					echo "<input type = \"submit\" class = \"btn btn-default\"";
+					if($this->posts[$i]['isLiked']) 
+						echo "value = \"Unlike\" />"."</br>"."\n";
+					else echo "value = \"Like\" />"."</br>"."\n";
+					echo "</form>"."</br>"."\n";
 					echo '<h2>Liked from:</h2>'."\n";
 					if($this->posts[$i]['likes'] != null) {
 						for($j = 0 ; $j < count($this->posts[$i]['likes']) ; ++$j) {
@@ -70,20 +86,6 @@
 						}
 
 					} else echo '<h4>No comments on this post.</h4>'."\n";
-					echo '<form action ="'.URL;
-					//$this->view->isLiked = 
-					if($this->posts[$i]['isLiked'])
-						echo '/like/removeLike/';
-					else echo '/like/createLike/';
-					echo $this->posts[$i]['post_id'];
-					if(!$this->posts[$i]['isLiked'])
-						echo '/'.$this->posts[$i]['user_id'];
-					echo '" method = "post"></br>'."\n";
-					echo "<input type = \"submit\" class = \"btn btn-default\"";
-					if($this->posts[$i]['isLiked']) 
-						echo "value = \"Unlike\" />"."</br>"."\n";
-					else echo "value = \"Like\" />"."</br>"."\n";
-					echo "</form>"."</br>"."\n";
 					echo '<form class = "form-group" action="'.URL.'/comment/createComment/'.
 							$this->posts[$i]['post_id'].'/'.
 							$this->posts[$i]['user_id'];

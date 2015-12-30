@@ -191,19 +191,22 @@
 		// get request
 	 public function search($x)
 	 {
+	 	$id = Session::get('id');
 	 	$query = $this->db->prepare(
 	 		"
 	 		select * 
 	 		from users 
 	 		where 
-	 		email like Concat('%',:x,'%') or
+	 		(email like Concat('%',:x,'%') or
 	 		first_name like Concat('%',:x,'%') or
 	 		last_name = Concat('%',:x,'%') or
 	 		phone = Concat('%',:x,'%') or
-	 		hometown = Concat('%',:x,'%') 
+	 		hometown = Concat('%',:x,'%'))
+	 		and user_id != :id 
 	 		");
 	 	if($query->execute(array(
-	 		':x' => $x
+	 		':x' => $x,
+	 		':id' => $id
 	 		)))
 	 	{
 	 		if($query->rowCount()>0)

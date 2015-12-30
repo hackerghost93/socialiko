@@ -67,6 +67,12 @@ class Friend_Request extends Controller
 		die();
 	}
 
+	static function getFriendRequestsCount() {
+		require_once('Models/friend_request_model.php');
+		$model = new Friend_Request_Model();
+		return $model->getFriendRequestsCount(Session::get('id'));
+	}
+
 }
 
  ?>
