@@ -137,10 +137,6 @@
 	 		{
 	 			$target_file = URL."/Public/profile_pictures/female.jpg";	
 	 		}
-	 		else
-	 		{
-	 			echo "error upload and no gender selected";
-	 		}
 	 	}
 	 	$query = $this->db->prepare("Insert into users 
 	 		(first_name,last_name,email,password

@@ -171,7 +171,32 @@ class Post_Model extends Model
 			if($query->rowCount() > 0)
 			{
 				$posts = $query->fetchAll();
-				
+				for($i = 0 ; i < count($posts) ; ++$i) {
+					$query2 = $this->db->prepare("
+						select* from likes
+						where post_id = :pid
+					");
+					if($query2->execute(array(
+						'pid' => $posts[$i]))) {
+						$posts[$i]['likes'] = $query2->fetchAll();
+					} else {
+						echo 'something went wrong';
+						die();
+					}
+
+					$query2 = $this->db->prepare("
+						select* from comments
+						where post_id = :pid
+					");
+					if($query2->execute(array(
+						'pid' => $posts[$i]))) {
+						$posts[$i]['comments'] = $query2->fetchAll();
+					} else {
+						echo 'something went wrong';
+						die();
+					}
+				}
+				return $posts;
 			}
 			else 
 				return null ;
