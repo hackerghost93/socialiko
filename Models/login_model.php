@@ -215,7 +215,55 @@
 	 		die();
 	 	} 
 	 }
+
+	 public function email_exists() {
+	 	$email = $_POST['email'];
+	 	$query = $this->db->prepare("
+	 		select email from users
+	 		where email = :email
+	 	");
+	 	if($query->execute(array(':email' => $email)))
+	 		return $query->rowCount() > 0;
+	 	else {
+	 		echo 'something went wrong';
+	 		die();
+	 	}
+	 }
+
+	 public function update() {
+	 	$id = Session::get('id');
+	 	$query = $this->db->prepare("
+			update users set
+			first_name = :first_name,
+			last_name = :last_name,
+			email = :email,
+			phone = :phone,
+			birthdate = :birthdate,
+			hometown = :hometown,
+			martial_status = :status,
+			aboutme = :aboutme".
+			($_POST['password'] ?
+			(", password=".md5($_POST['password'])) : "")
+			." where user_id = :id
+	 	");
+
+	 	if($query->execute(array(
+	 		':first_name' => $_POST['firstname'],
+	 		':last_name' => $_POST['lastname'],
+	 		':email' => $_POST['email'],
+	 		':phone' => $_POST['phone'],
+	 		':birthdate' => $_POST['birthday'],
+	 		':hometown' => $_POST['hometown'],
+	 		':status' => $_POST['status'],
+	 		':aboutme' => $_POST['aboutme'],
+	 		':id' => $id
+	 		))) return true;
+	 	else {
+	 		echo 'something went wrong';
+	 		die();
+	 	}
+	 }
+	
 	}
 
-
-	?>
+?>
