@@ -196,8 +196,13 @@
 	 		first_name like Concat('%',:x,'%') or
 	 		last_name = Concat('%',:x,'%') or
 	 		phone = Concat('%',:x,'%') or
-	 		hometown = Concat('%',:x,'%'))
-	 		and user_id != :id 
+	 		hometown = Concat('%',:x,'%')
+	 		) and user_id != :id 
+	 		or user_id in
+	 		(select user_id 
+	 			from users where user_id != :id
+	 		having concat_ws(' ', first_name, last_name) 
+	 		like Concat('%',:x,'%'))
 	 		");
 	 	if($query->execute(array(
 	 		':x' => $x,
